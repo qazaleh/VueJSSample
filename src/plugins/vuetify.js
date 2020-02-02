@@ -28,11 +28,10 @@ export default new Vuetify({
     theme: {
         themes: {
             light: {
-                primary: colors.grey.darken2,
-                secondary: colors.grey.darken1,
-                accent: colors.shades.black,
-                error: colors.red.accent3,
-                mainPurple:colors.purple.accent3
+                accent:colors.lightBlue,
+                primary: '#b10dbb',
+                secondary: '#b10dbb',
+                error: '#b10dbb',
             },
             dark: {
                 primary: colors.blue.lighten3,

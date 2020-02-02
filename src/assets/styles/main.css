@@ -1,5 +1,9 @@
-.v-card-main-rounded{
+.v-card{
+
   border-radius: 18px;
+  align-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .v-dialog-login{

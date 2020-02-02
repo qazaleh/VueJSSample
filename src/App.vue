@@ -2,7 +2,8 @@
 
 
   <v-app>
-
+    <router-view></router-view>
+<!--    <login-form/>-->
   </v-app>
 <!--  <v-app class="grey lighten-4">-->
 <!--    <MyAppNavBar/>-->
@@ -30,7 +31,7 @@
 <script>
 
 
-  import MyAppNavBar from './components/MyAppNavBar'
+//  import LoginForm from "@/components/LoginForm";
 
   export default {
     name: 'App',
@@ -39,7 +40,7 @@
       this.$vuetify.rtl = true;
     },
     components: {
-      MyAppNavBar
+      // LoginForm,
 
     },
 
