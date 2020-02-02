@@ -1,21 +1,36 @@
 <template>
-  <v-app>
-    <v-content>
 
-      <div id="app">
-        <side-menu/>
-        <router-view></router-view>
-      </div>
-    </v-content>
+
+  <v-app>
+
   </v-app>
+<!--  <v-app class="grey lighten-4">-->
+<!--    <MyAppNavBar/>-->
+
+<!--    <v-content class="mx-4 mb-4">-->
+<!--      <router-view></router-view>-->
+<!--    </v-content>-->
+
+<!--  </v-app>-->
+
+<!--  <v-app>-->
+<!--    <v-content>-->
+
+<!--      <div id="app">-->
+
+<!--        <o-t-p-code-view/>-->
+<!--&lt;!&ndash;        <o-t-p-login-view/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <side-menu/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <router-view></router-view>&ndash;&gt;-->
+<!--      </div>-->
+<!--    </v-content>-->
+<!--  </v-app>-->
 </template>
 
 <script>
 
-  // import Dashboard from "@/components/Dashboard";
-  // import Team from "@/components/Team";
-  // import Projects from "@/components/Projects";
-  import SideMenu from "@/components/SideMenu";
+
+  import MyAppNavBar from './components/MyAppNavBar'
 
   export default {
     name: 'App',
@@ -24,10 +39,8 @@
       this.$vuetify.rtl = true;
     },
     components: {
-        // Projects,
-        // Team,
-        // Dashboard,
-        SideMenu,
+      MyAppNavBar
+
     },
 
 
