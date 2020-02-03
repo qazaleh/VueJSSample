@@ -5,10 +5,9 @@ import VueRouter from "vue-router";
 import Vuetify from "vuetify";
 import LoginForm from "@/components/LoginForm";
 import OtpCodeView from "@/components/OtpCodeView";
-// import Dashboard from "@/views/Dashboard";
-// import Projects from "@/views/Projects";
-// import Team from "@/views/Team";
-
+import MainRoot from "@/components/MainRoot";
+import Dashboard from "@/components/Dashboard";
+import PaymentGateway from "@/components/PaymentGateway";
 Vue.config.productionTip = false
 Vue.config.rtl = true
 Vue.use(VueRouter)
@@ -23,13 +22,28 @@ export default new Vuetify({
 const routers =[
   {
     name:"login",
-    path:"/",
+    path:"/login",
     component:LoginForm
   },
   {
     name:"otp",
     path:"/otp",
     component:OtpCodeView
+  },
+  {
+    name:"home",
+    path:"/home",
+    component:MainRoot,
+  },
+  {
+    name:"dashboard",
+    path:"/dashboard",
+    component:Dashboard,
+  },
+  {
+    name:"gateway",
+    path:"/gateway",
+    component:PaymentGateway,
   },
 ]
 

@@ -1,8 +1,8 @@
 <template>
-
     <v-container fluid fill-height >
         <v-row class="v-row-center">
             <v-card class="transparent" flat light>
+<!--                <h2>Route: {{ $route.name }}</h2>-->
                 <v-card class="v-card-main-rounded" light  flat>
 
                     <v-row  class="pt-8 v-row-center">
@@ -18,30 +18,40 @@
                     </v-row>
                     <v-form class="px-3" ref="form">
                         <v-text-field class="v-textField-mobile "  dense v-model="otpCode" label="کد ۴ رقمی پیامک شده"  :rules="inputRules"/>
-                        <v-btn dark  class="btn-grad">ورود</v-btn>
+                        <v-row class="v-row-center">
 
-                        <v-chip
-                                class="ma-2"
-                                color="white"
-                                text-color="#b10dbb"
+                        <div class="numeric-keyboard">
+                            <v-btn
+                                    v-for="key in keys"
+                                    :key="key"
+                                    class="btn-keyboard"
+                                    elevation="0"
+                                    fab
+                                    x-small
+                            >{{ key }}</v-btn>
+                            <v-btn class="btn-keyboard" elevation="0" fab disabled  x-small></v-btn>
+                            <v-btn class="btn-keyboard" elevation="0" fab   x-small>0</v-btn>
+                            <v-btn class="btn-keyboard" elevation="0" fab disabled  x-small></v-btn>
+                        </div>
+                        </v-row>
 
-                        >
-                            <v-icon left>mdi-fire</v-icon>
-                            New Posts Available
-                        </v-chip>
+                        <v-row class="v-row-center pt-6">
+                            <v-btn dark  class="btn-grad" elevation="0" @click="showDashboard">ورود</v-btn>
+                            <v-btn
+                                    v-if="countDown=0"
+                                    dark  class="btn-rounded-pink" elevation="0">ارسال مجدد</v-btn>
 
-<!--                        <v-chip-->
-<!--                                class="ma-2 v-chip-pink-timer"-->
-<!--                                color="white"-->
-<!--                                text-color="#b10dbb"-->
-<!--                                pill-->
-<!--                        >-->
-<!--                            <v-avatar left>-->
-<!--                                <v-icon class="v-icon-timer">mdi-alarm</v-icon>-->
-<!--                            </v-avatar>-->
-<!--                            1:20-->
-<!--                        </v-chip>-->
+                            <v-card
+                                    class=" v-card-pink-timer ma-5"
+                                    color="white"
+                                    text-color="#b10dbb"
+                                    flat
 
+                            >
+                                {{countDown}}
+                                <v-icon class="v-icon-timer" left>mdi-alarm</v-icon>
+                            </v-card>
+                        </v-row>
                     </v-form>
                 </v-card>
             </v-card>
@@ -52,18 +62,48 @@
 
 <script>
     export default {
+
         name: "OtpCodeView",
-        data(){
-            return{
+        data() {
+            return {
                 otpCode: '',
+                countDown : 10,
 
                 inputRules: [
                     v => !!v || 'پر کردن این آیتم اجباری می‌باشد',
-                    v => v.length <11  || 'کد باید شامل ۴ کاراکتر باشد'
+                    v => v.length < 11 || 'کد باید شامل ۴ کاراکتر باشد'
                 ],
-
+                value: '',
+                keys: Array.from({length: 9}, (v, k) => k+1),
             }
         },
+
+        methods: {
+            countDownTimer() {
+                if(this.countDown > 0) {
+                    setTimeout(() => {
+                        this.countDown -= 1
+                        this.countDownTimer()
+                    }, 1000)
+                }
+            },
+            showDashboard(){
+                this.$router.push('/dashboard')
+            }
+
+        },
+        watch: {
+            value() {
+                this.$emit('pressed', this.value);
+            },
+            selfValue() {
+                this.value = this.selfValue;
+            },
+        },
+        created() {
+            this.countDownTimer()
+        },
+
     }
 </script>
 
@@ -86,7 +126,7 @@
         align-items: center;
         text-align: center;
         width: 448px;
-        height: 399px;
+        height: 577px;
 
 
     }
@@ -140,22 +180,55 @@
 
     }
 
+    .btn-rounded-pink {
+        border-radius: 23px!important; ;
+        width: 114px;
+        height: 47px;
+        font-family: 'IRANSansMobile(FaNum)';
+        font-size: 13px;
+        color: #e005c5;
+        background: linear-gradient(to right, #e005c5, #27269c);
+        padding: 1rem;
+        position: relative;
+        border-image-slice: 1;
+    }
+
     .btn-gray-login{
         font-family: 'IRANSansMobile(FaNum)' ;
         font-size: 10px!important;
         color: #7a869a!important;
     }
 
-    .v-chip-pink-timer{
+    .v-card-pink-timer{
         font-family: 'IRANSansMobile(FaNum)' ;
-        font-size: 10px!important;
+        font-size: 16px!important;
+        font-weight: 500;
         color: #b10dbb!important;
+        width: fit-content;
+        height: fit-content;
     }
 
     .v-icon-timer {
         color: #b10dbb;
-        height: 15px;
+        height: 12px;
         width: 12px;
     }
+
+/*    keyboard class*/
+
+    .numeric-keyboard {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 22px;
+        text-align: center;
+    }
+
+    .btn-keyboard {
+        background-color: #f0f3f8;
+        color: #253858;
+        font-family: 'IRANSansMobile(FaNum)' !important ;
+        font-size: 11px!important;
+    }
+
 
 </style>

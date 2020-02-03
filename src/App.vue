@@ -2,30 +2,26 @@
 
 
   <v-app>
-    <router-view></router-view>
-<!--    <login-form/>-->
-  </v-app>
-<!--  <v-app class="grey lighten-4">-->
-<!--    <MyAppNavBar/>-->
 
-<!--    <v-content class="mx-4 mb-4">-->
+      <side-menu v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>
+      <router-view></router-view>
+<!--    <v-if v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'>-->
+<!--      <side-menu v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>-->
+<!--      <v-row class="px-12 mx-12"  justify="space-between">-->
+<!--          <v-col cols="8" class="green ml-n8">-->
+<!--            <router-view></router-view>-->
+<!--          </v-col>-->
+<!--          <v-col cols="3" class="purple">-->
+<!--          </v-col>-->
+<!--        </v-row>-->
+<!--    </v-if>-->
+<!--    <v-if v-if='this.$route.name === "login" || this.$route.name === "otp"'>-->
 <!--      <router-view></router-view>-->
-<!--    </v-content>-->
+<!--    </v-if>-->
 
-<!--  </v-app>-->
 
-<!--  <v-app>-->
-<!--    <v-content>-->
+  </v-app>
 
-<!--      <div id="app">-->
-
-<!--        <o-t-p-code-view/>-->
-<!--&lt;!&ndash;        <o-t-p-login-view/>&ndash;&gt;-->
-<!--&lt;!&ndash;        <side-menu/>&ndash;&gt;-->
-<!--&lt;!&ndash;        <router-view></router-view>&ndash;&gt;-->
-<!--      </div>-->
-<!--    </v-content>-->
-<!--  </v-app>-->
 </template>
 
 <script>
@@ -33,17 +29,24 @@
 
 //  import LoginForm from "@/components/LoginForm";
 
-  export default {
+import SideMenu from "@/components/SideMenu";
+export default {
     name: 'App',
     el: '#app',
     mounted () {
       this.$vuetify.rtl = true;
     },
     components: {
+      SideMenu
       // LoginForm,
 
     },
 
+    method:{
+      showMenu() {
+        return this.$route.name !== '/' || this.$route.name !== 'otp';
+      }
+    },
 
     data: () => ({
 

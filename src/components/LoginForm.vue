@@ -2,7 +2,8 @@
     <v-container fluid fill-height >
         <v-row class="v-row-center">
             <v-card class="transparent" flat light>
-            <v-card class="v-card-main-rounded" light  flat>
+<!--                <h2>Route: {{ $route.name }}</h2>-->
+                <v-card class="v-card-main-rounded" light  flat>
 
                 <v-row  class="pt-8 v-row-center">
                     <div class="Oval" ></div>
@@ -17,7 +18,7 @@
                 </v-row>
                     <v-form class="px-3" ref="form">
                         <v-text-field class="v-textField-mobile "  dense v-model="mobileNumber" label="شماره موبایل"  :rules="inputRules"/>
-                        <v-btn dark  class="btn-grad" to="/otp">ارسال پیامک</v-btn>
+                        <v-btn dark  class="btn-grad" elevation="0" @click="login">ارسال پیامک</v-btn>
                     </v-form>
             </v-card>
                 <v-row  wrap class="v-row-center">
@@ -60,8 +61,12 @@
 
             }
         },
-        method() {
+        methods: {
+            login () {
 
+                this.$router.push('/otp')
+
+            }
 
         }
     }
