@@ -1,50 +1,60 @@
 <template>
-            <v-navigation-drawer
-                    class="v-navigation-drawer-flat pa-0"
-                    app
-                    fixed
-                    right
-                    width="249px"
-                    :style="{background: gradient}"
-                    :mini-variant="isPanelOpen"
-                    :mini-variant-width="100"
-                    :expand-on-hover="false"
-                    color="purple"
-                    permanent
-                    dark
-            >
-                <v-list
-                        dense
-                        nav
-                >
-                    <v-row  style="padding-right: 20px;padding-top: 32px;padding-bottom: 32px">
-                        <div class="Oval"></div>
-                        <div class="Oval" style="margin-right: -20px;" ></div>
-                        <h1  class="h1-headerName">آتی پی</h1>
+    <v-expand-x-transition>
 
-                    </v-row>
-                    <v-row class="v-row-center" style="padding-top: 20px">
-                        <v-btn class="v-btn-side-menu" color="#27269c" fab  @click="closeSidebarPanel">
-                            <v-icon class="v-icon-menu">mdi-chevron-right</v-icon>
-                        </v-btn>
-                    </v-row>
-                    <v-list-item
-                            v-for="item in links"
-                            :key="item.title"
-                            link
-                            router :to="item.route"
-                    >
-                        <v-list-item-icon>
-                            <v-icon>{{ item.icon }}</v-icon>
-                        </v-list-item-icon>
+    <v-navigation-drawer
+                                    class="v-navigation-drawer-flat pa-0 "
+                                   app
+                                   right
+                                   permanent
+                                   dark
+                                   mobile-break-point="991"
+                                   v-model="drawer"
+                                   :mini-variant.sync="mini"
+                                   :style="{background: gradient}"
 
-                        <v-list-item-content class="ps-0">
-                            <v-list-item-title class="v-list-item-title" >{{ item.text }}</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-list>
-            </v-navigation-drawer>
+    >
 
+        <v-list
+                                       dense
+                                       nav
+                               >
+                                   <v-row  style="padding-right: 20px;padding-top: 32px;padding-bottom: 32px">
+                                       <div  class="Oval"></div>
+                                       <div  class="Oval" style="margin-right: -20px;" ></div>
+                                       <h1  class="h1-headerName">آتی پی</h1>
+                                   </v-row>
+                                   <v-row style="      align-content: center;alignment: center;align-items: center;justify-content: center;justify-items: center; padding-bottom: 5px">
+<!--                                       <div  style="padding-right: 210px;margin-top: -15px">-->
+                                           <v-btn
+                                                   class="v-btn-side-menu"
+                                                   @click.stop="mini = !mini"
+                                                   fab
+                                                   small
+                                                   dark
+                                           >
+                                               <v-icon v-if="mini">mdi-chevron-left</v-icon>
+                                               <v-icon v-else>mdi-chevron-right</v-icon>
+                                           </v-btn>
+<!--                                       </div>-->
+                                   </v-row>
+
+                                   <v-list-item
+                                           v-for="item in links"
+                                           :key="item.title"
+                                           link
+                                           router :to="item.route"
+                                   >
+                                       <v-list-item-icon>
+                                           <v-icon>{{ item.icon }}</v-icon>
+                                       </v-list-item-icon>
+
+                                       <v-list-item-content class="ps-0">
+                                           <v-list-item-title class="v-list-item-title" >{{ item.text }}</v-list-item-title>
+                                       </v-list-item-content>
+                                   </v-list-item>
+                               </v-list>
+                           </v-navigation-drawer>
+    </v-expand-x-transition>
 </template>
 
 <script>
@@ -54,9 +64,11 @@
         name: "SideMenu",
         data () {
             return {
-                miniVariant: false,
-                expandOnHover: true,
-                isPanelOpen: true,
+                mini:true,
+                drawer:true,
+                props: {
+
+                },
                 colors: [
                     { id: 0, hex: "#27269c", disabled: false },
                     { id: 1, hex: "#e005c5", disabled: false },
@@ -139,7 +151,11 @@
 
     .v-navigation-drawer-flat {
         border-radius: 0!important;
-        clip-path: inset(0px 0px fill 249px);
+        /*clip-path: inset(0px 0px fill 249px);*/
+        /*shape-outside: ellipse(150px 300px at 50% 50%);*/
+        transition: all 500ms ease-out 50ms;
+
+
     }
     .v-row-center{
         align-content: center;
@@ -170,14 +186,9 @@
     }
 
     .v-btn-side-menu {
-        width: 40px;
-        height: 40px;
-        background-color: #27269c;
-    }
-    .v-icon-menu{
-        color: white;
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
+        background-image: linear-gradient( to right, #e005c5 5%, #ebafff 51%, #ebafff 100%);
     }
 
     .v-list-item--link::before {
@@ -187,6 +198,14 @@
         border-radius: 0px!important;
     }
 
+    .v-card-rounded-btn{
+        background-color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 35px !important;
+        align-content: center;
+        align-items: center;
+    }
 
 
 </style>

@@ -3,8 +3,11 @@
 
   <v-app>
 
-      <side-menu v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>
-      <router-view></router-view>
+      <MainRoot v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>
+<!--      <side-menu v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>-->
+<!--      <v-container>-->
+<!--      <router-view></router-view>-->
+<!--      </v-container>-->
 <!--    <v-if v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'>-->
 <!--      <side-menu v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>-->
 <!--      <v-row class="px-12 mx-12"  justify="space-between">-->
@@ -29,7 +32,8 @@
 
 //  import LoginForm from "@/components/LoginForm";
 
-import SideMenu from "@/components/SideMenu";
+// import SideMenu from "@/components/SideMenu";
+import MainRoot from "@/components/MainRoot";
 export default {
     name: 'App',
     el: '#app',
@@ -37,7 +41,8 @@ export default {
       this.$vuetify.rtl = true;
     },
     components: {
-      SideMenu
+        MainRoot,
+      // SideMenu
       // LoginForm,
 
     },
