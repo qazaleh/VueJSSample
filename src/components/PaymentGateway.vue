@@ -19,12 +19,58 @@
                 </v-row>
             </v-col>
         </v-row>
+            <v-row>
+            <v-col v-for="card in cards" :key="card.title" :card="card" >
+                <payment-gateway-card :card="card" />
+            </v-col>
+            </v-row>
+
     </v-container>
 </template>
 
 <script>
+    import PaymentGatewayCard from "@/components/PaymentGatewayCard";
     export default {
-        name: "PaymentGateway"
+        name: "PaymentGateway",
+        components: {PaymentGatewayCard},
+        data(){
+            return{
+                cards: [
+                    {
+                        status:'2',
+                        title:'درگاه نرمون',
+                        gateWayNumber:'۲۳۴۵۶۷۸۹۰۹۸۷۶۵۴۳۲۳',
+                        walletType:'کیف‌پول اصلی من'
+                    },
+                    {
+                        status:'1',
+                        title:'درگاه نرمون',
+                        gateWayNumber:'۲۳۴۵۶۷۸۹۰۹۸۷۶۵۴۳۲۳',
+                        walletType:'کیف‌پول اصلی من'
+                    },
+                    {
+                        status:'0',
+                        title:'درگاه نرمون',
+                        gateWayNumber:'۲۳۴۵۶۷۸۹۰۹۸۷۶۵۴۳۲۳',
+                        walletType:'کیف‌پول اصلی من'
+                    },
+
+                ],
+                numberOfColumns: 3,
+            }
+        },
+        computed: {
+            gridStyle() {
+                return {
+                    gridTemplateColumns: `repeat(${this.numberOfColumns}, minmax(100px, 1fr))`
+                }
+            },
+        },
+        methods: {
+            addCard() {
+                this.cards.push('new-card')
+            },
+        },
     }
 </script>
 
@@ -54,13 +100,6 @@
         border-image-slice: 1;
     }
 
-    .button_submit:active {
-        position:relative;
-        top:1px;
-    }
-    .v-icon-timer {
-        color: #b10dbb;
-        height: 12px;
-        width: 12px;
-    }
+
+
 </style>
