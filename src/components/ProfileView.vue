@@ -1,56 +1,69 @@
 <template>
-    <v-container fluid class="transparent">
-    <v-toolbar  class="transparent"  flat app light elevation="0" >
-            <v-toolbar-title class="v-toolbar-title-profile-header">پروفایل کاربری</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn class="btn-back transparent" elevation="0" >
-                بازگشت
-                <v-icon color="#253858">mdi-chevron-left</v-icon>
-            </v-btn>
-        </v-toolbar>
-
-                <v-row class="transparent">
-                    <v-col cols="12" class="transparent">
-                        <v-row
-                                :align="start"
-                                :justify="end"
-                                class="transparent"
-                        >
-                            <p class="p-switch-labels" style="padding-right: 10px">شخصیت حقیقی</p>
-                            <v-switch
-                                      class="v-switch-small"
-                                      v-model="switch1" inset
-                                      color="grey darken-1"
-                                      hide-details></v-switch>
-                            <p class="p-switch-labels" style="margin-right: -10px">شخصیت حقوقی</p>
-
-<!--                            class="ma-3 pa-6"-->
-                        </v-row>
-                    </v-col>
+    <v-container fluid class="transparent" >
+        <v-row>
+            <v-col md="6" xl="6" lg="6" sm="12" xs="12">
+                <v-row class="v-row-right-content" style="margin-right: 10px">
+                    <p class="v-toolbar-title-profile-header">پروفایل کاربری</p>
                 </v-row>
-            </v-container>
+            </v-col>
+            <v-col md="6" xl="6" lg="6" sm="12" xs="12">
+                <v-row class="v-row-left-content">
+                <v-btn class="btn-back transparent" elevation="0" >
+                                    بازگشت
+                     <v-icon color="#253858">mdi-chevron-left</v-icon>
+                </v-btn>
+                </v-row>
+            </v-col>
+        </v-row>
+
+<!--        <v-stepper-step-->
+<!--                :key="`${n}-step`"-->
+<!--                :complete="e1 > n"-->
+<!--                :step="n"-->
+<!--                :editable="true"-->
+<!--        >-->
+<!--        </v-stepper-step>-->
+
+<!--        <v-stepper-content-->
+<!--                :key="`${n}-content`"-->
+<!--                :step="n"-->
+<!--        >-->
+            <real-user-base-info steps='this.n' current-step='this.e1' />
+<!--        </v-stepper-content>-->
 
 
 
-<!--            <v-row justify="end" align="start">-->
-<!--                    <p class="p-switch-labels" >شخصیت حقیقی</p>-->
-<!--                    <v-switch v-model="switch1" inset-->
-<!--                              color="grey darken-1"-->
-<!--                              hide-details></v-switch>-->
-<!--                    <p class="p-switch-labels" >شخصیت حقوقی</p>-->
-<!--            </v-row>-->
-
+    </v-container>
 
 </template>
 <script>
+    import RealUserBaseInfo from "@/components/RealUserBaseInfo";
     export default {
         name: "ProfileView",
-
+        components: {RealUserBaseInfo},
+        watch: {
+            steps(val) {
+                if (this.e1 > val) {
+                    this.e1 = val
+                }
+            }
+        },
         data(){
             return{
+                e1: 1,
+                n:2,
+                firstName:'',
+                lastName:'',
+                birthDate:'',
+                ideNumber:'',
                 switch1: false,
+                inputRules: [
+                    v => !!v || 'پر کردن این آیتم اجباری می‌باشد',
+                    v => v.length < 4 || 'کد باید شامل ۴ کاراکتر باشد'
+                ],
             }
-        }
+        },
+
     }
 </script>
 
@@ -80,16 +93,19 @@
         text-align: right;
         color: #253858;
     }
-    .p-switch-labels{
-        font-family: 'IRANSansMobile(FaNum)';
-        font-size: 14px;
-        text-align: right;
-        color: #253858;
-        padding-top: 22px;
+
+    .v-row-left-content {
+
+        justify-content: flex-end;
+
     }
-    .v-switch-small {
-        transform: scale(0.775);
-        transform-origin: right;
-        padding-right: 8px;
+    .v-row-right-content {
+
+        justify-content: flex-start;
+
     }
+    .v-row-grey-bg {
+        background-color: #f4f5f7;
+    }
+
 </style>

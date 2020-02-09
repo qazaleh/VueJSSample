@@ -4,9 +4,12 @@
   <v-app>
 
       <MainRoot v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>
-<!--      <side-menu v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>-->
+      <login-form v-if='this.$route.name === "login"'/>
+      <otp-code-view v-if='this.$route.name === "otp"'/>
+
+<!--      <login-form></login-form>-->
+      <!--      <side-menu v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>-->
 <!--      <v-container>-->
-<!--      <router-view></router-view>-->
 <!--      </v-container>-->
 <!--    <v-if v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'>-->
 <!--      <side-menu v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>-->
@@ -32,8 +35,10 @@
 
 //  import LoginForm from "@/components/LoginForm";
 
-// import SideMenu from "@/components/SideMenu";
+import SideMenu from "@/components/SideMenu";
 import MainRoot from "@/components/MainRoot";
+import LoginForm from "@/components/LoginForm";
+import OtpCodeView from "@/components/OtpCodeView";
 export default {
     name: 'App',
     el: '#app',
@@ -41,16 +46,15 @@ export default {
       this.$vuetify.rtl = true;
     },
     components: {
+        OtpCodeView,
         MainRoot,
-      // SideMenu
-      // LoginForm,
+      SideMenu,
+      LoginForm,
 
     },
 
     method:{
-      showMenu() {
-        return this.$route.name !== '/' || this.$route.name !== 'otp';
-      }
+
     },
 
     data: () => ({

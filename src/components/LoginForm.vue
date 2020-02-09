@@ -1,8 +1,7 @@
 <template>
-    <v-container fluid fill-height >
+    <v-container fluid fill-height>
         <v-row class="v-row-center">
             <v-card class="transparent" flat light>
-<!--                <h2>Route: {{ $route.name }}</h2>-->
                 <v-card class="v-card-main-rounded" light  flat>
 
                 <v-row  class="pt-8 v-row-center">
@@ -17,7 +16,7 @@
                     <p class="p-message">برای ورود یا عضویت شماره موبایل خود را وارد کنید.</p>
                 </v-row>
                     <v-form class="px-3" ref="form">
-                        <v-text-field class="v-textField-mobile "  dense v-model="mobileNumber" label="شماره موبایل"  :rules="inputRules"/>
+                        <v-text-field class="v-textField-mobile "  dense v-model="mobileNumber" label="شماره موبایل"  @keypress="onlyNumber" type="text" :maxlength="maxInput" :rules="inputRules"/>
                         <v-btn dark  class="btn-grad" elevation="0" @click="login">ارسال پیامک</v-btn>
                     </v-form>
             </v-card>
@@ -53,7 +52,7 @@
         data(){
             return{
                 mobileNumber: '',
-
+                maxInput: 11,
                 inputRules: [
                     v => !!v || 'پر کردن این آیتم اجباری می‌باشد',
                     v => v.length <11  || 'شماره موبایل شامل ۱۱ کاراکتر است'
@@ -66,9 +65,17 @@
 
                 this.$router.push('/otp')
 
+            },
+            onlyNumber ($event) {
+                let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+                if ((keyCode < 48 || keyCode > 57 )
+                    // && keyCode !== 46
+                ) { // 46 is dot
+                    $event.preventDefault();
+                }
             }
+        },
 
-        }
     }
 </script>
 

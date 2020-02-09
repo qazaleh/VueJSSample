@@ -2,7 +2,6 @@
     <v-container fluid fill-height >
         <v-row class="v-row-center">
             <v-card class="transparent" flat light>
-<!--                <h2>Route: {{ $route.name }}</h2>-->
                 <v-card class="v-card-main-rounded" light  flat>
 
                     <v-row  class="pt-8 v-row-center">
@@ -17,7 +16,7 @@
                         <p class="p-message">کد ۴ رقمی پیامک شده را ارسال کنید.</p>
                     </v-row>
                     <v-form class="px-3" ref="form">
-                        <v-text-field class="v-textField-mobile "  dense v-model="otpCode" label="کد ۴ رقمی پیامک شده"  :rules="inputRules"/>
+                        <v-text-field class="v-textField-mobile "  dense v-model="otpCode" label="کد ۴ رقمی پیامک شده" @keypress="onlyNumber" type="text" :maxlength="maxInput" :rules="inputRules"/>
                         <v-row class="v-row-center">
 
                         <div class="numeric-keyboard">
@@ -68,10 +67,10 @@
             return {
                 otpCode: '',
                 countDown : 10,
+                maxInput: 4,
 
                 inputRules: [
                     v => !!v || 'پر کردن این آیتم اجباری می‌باشد',
-                    v => v.length < 11 || 'کد باید شامل ۴ کاراکتر باشد'
                 ],
                 value: '',
                 keys: Array.from({length: 9}, (v, k) => k+1),
@@ -87,11 +86,19 @@
                     }, 1000)
                 }
             },
+            onlyNumber ($event) {
+            let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+            if ((keyCode < 48 || keyCode > 57 )
+                // && keyCode !== 46
+            ) { // 46 is dot
+                $event.preventDefault();
+            }
+            },
             showDashboard(){
                 this.$router.push('/dashboard')
             }
 
-        },
+            },
         watch: {
             value() {
                 this.$emit('pressed', this.value);
@@ -99,10 +106,10 @@
             selfValue() {
                 this.value = this.selfValue;
             },
-        },
+            },
         created() {
             this.countDownTimer()
-        },
+            },
 
     }
 </script>

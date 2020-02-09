@@ -11,8 +11,8 @@
         justify-items: center;
         border-radius: 18px!important;
         margin-right: 20px">
-                <v-card  content="" width="80%" height="fill-height" style="border-radius: 18px !important;">
-                <router-view></router-view>
+                <v-card class="transparent" flat width="85%" height="fill-height" style="border-radius: 0px !important;">
+                <router-view class="transparent"></router-view>
                 </v-card>
                 </v-row>
             </v-col>
@@ -74,5 +74,8 @@
         height: 35px;
         background-image: linear-gradient( to right, #e005c5 5%, #ebafff 51%, #ebafff 100%);
     }
+
+</style>
+<style>
 
 </style>

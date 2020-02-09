@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid fill-height >
+    <v-container fluid fill-height class="v-container-grey-bg">
         <v-row style="align-content: center;alignment: center;align-items: center;justify-content: center;justify-items: center;">
             <profile-view/>
         </v-row>
@@ -19,5 +19,9 @@
 </script>
 
 <style scoped>
-
+    .v-container-grey-bg {
+        background-color: #f4f5f7;
+        border-radius: 0px !important;
+        elevation: 0!important;
+    }
 </style>
