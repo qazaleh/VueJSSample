@@ -1,7 +1,7 @@
 <template>
     <v-container fluid class="white" style="border-radius: 18px!important;">
         <v-row
-                        class="transparent  v-row-right-content" style="padding-right: 10px">
+                   class="transparent  v-row-right-content" style="padding-right: 10px">
                     <p class="p-profile-header" >مشخصات فردی</p>
         </v-row>
         <v-row  class=" v-row-right-content wrap" style="margin-right: 5px; margin-top: -10px" >
@@ -20,37 +20,61 @@
             </v-col>
         </v-row>
         <v-row class="wrap">
-            <v-col md="6" xl="6" lg="6" sm="12" xs="12">
+            <v-col cols="12" md="6">
                 <v-text-field class="v-textField-profile "  dense v-model="firstName" label="نام"  :rules="inputRules"/>
                 <v-text-field class="v-textField-profile "  dense v-model="lastName" label="نام خانوادگی"  :rules="inputRules"/>
-                <v-text-field class="v-textField-profile "  dense v-model="birthDate" label="تاریخ تولد"  :rules="inputRules"/>
+                <v-menu
+                        ref="menu"
+                        v-model="menu"
+                        :close-on-content-click="false"
+                        :return-value.sync="birthDate"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="290px"
+                >
+                    <template v-slot:activator="{ on }">
+                        <v-text-field class="v-textField-profile " v-on="on" readonly append-icon="mdi-calendar" dense v-model="birthDate" label="تاریخ تولد"  :rules="inputRules"/>
+                    </template>
+                    <v-date-picker v-model="date" no-title scrollable>
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                    </v-date-picker>
+                </v-menu>
+
             </v-col>
-            <v-col md="6" xl="6" lg="6" sm="12" xs="12">
-                <v-row justify="space-around" style="padding-bottom: 10px ;padding-left: 10px">
-                    <v-col>
+            <v-col cols="12" md="6">
+                <v-row justify="space-between" style="padding-bottom: 10px ;">
+                    <v-col cols="12" md="6">
                         <p class="p-field">تصویر پروفایل</p>
                         <p class="-png-jpeg-">فرمت png و jpeg قابل
                             قبول است. حداکثر ۲۰ مگ…</p>
                     </v-col>
+                    <v-col cols="12" md="6">
                     <v-card class="v-card-profile-image-rectangle pt-9" flat align="center" >
-                        <v-icon class="v-icon-add">mdi-plus-box-outline</v-icon>
-                    </v-card>
-                </v-row>
-                <v-row justify="space-around" style="padding-bottom: 10px;padding-left: 10px">
-                    <v-col>
-                        <p class="p-field">بارگزاری تصویر شناسنامه</p>
+                            <v-icon class="v-icon-add">mdi-plus-box-outline</v-icon>
+                        </v-card>
                     </v-col>
+                </v-row>
+                <v-row justify="space-between" style="padding-bottom: 10px ;">
+                    <v-col cols="12" md="6">
+                    <p class="p-field">بارگزاری تصویر شناسنامه</p>
+                    </v-col>
+                    <v-col cols="12" md="6">
                     <v-card class="v-card-profile-image-small-rectangle pt-3" flat align="center">
                         <v-icon class="v-icon-add">mdi-plus-box-outline</v-icon>
                     </v-card>
-                </v-row>
-                <v-row justify="space-around" style="padding-bottom: 10px;padding-left: 10px">
-                    <v-col>
-                        <p class="p-field">بارگزاری تصویر کارت ملی</p>
                     </v-col>
+                </v-row>
+                <v-row justify="space-between" style="padding-bottom: 10px ;">
+                    <v-col cols="12" md="6">
+                    <p class="p-field">بارگزاری تصویر کارت ملی</p>
+                    </v-col>
+                    <v-col cols="12" md="6">
                     <v-card class="v-card-profile-image-small-rectangle pt-3" flat align="center">
                         <v-icon class="v-icon-add">mdi-plus-box-outline</v-icon>
                     </v-card>
+                    </v-col>
                 </v-row>
                 <v-row class="v-row-left-content">
                     <v-btn dark  class="btn-grad" elevation="0" @click="nextStep(this.currentStep)" >مرحله بعد</v-btn>
@@ -80,6 +104,10 @@
                 inputRules: [
                     v => !!v || 'پر کردن این آیتم اجباری می‌باشد',
                 ],
+                date: new Date().toISOString().substr(0, 10),
+                menu: false,
+                modal: false,
+                menu2: false,
             }
         },
         methods: {
@@ -106,13 +134,11 @@
 
 <style scoped>
     .v-textField-profile {
-        font-size: 8px;
+        font-size: 16px;
         font-family: 'IRANSansMobile(FaNum)';
         text-align: left;
         color: #b10dbb;
         padding-bottom: 40px;
-        padding-right: 20px;
-        padding-left: 20px;
         background-color: white;
     }
     .p-field {
@@ -206,5 +232,6 @@
         font-weight: 500;
         text-align: right;
         color: #253858;
+        word-wrap: normal;
     }
 </style>

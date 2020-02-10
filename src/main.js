@@ -8,6 +8,11 @@ import OtpCodeView from "@/components/OtpCodeView";
 import MainRoot from "@/components/MainRoot";
 import Dashboard from "@/components/Dashboard";
 import PaymentGateway from "@/components/PaymentGateway";
+// import UserWorkFlow from "@/components/UserWorkFlow";
+// import WalletDiagrams from "@/components/WalletDiagrams";
+// import CustomerInfo from "@/components/CustomerInfo";
+import ProfileView from "@/components/ProfileView";
+
 Vue.config.productionTip = false
 Vue.config.rtl = true
 Vue.use(VueRouter)
@@ -39,6 +44,12 @@ const routers =[
     name:"dashboard",
     path:"/dashboard",
     component:Dashboard,
+    children: [{
+      name:"userProfile",
+      path:"userProfile",
+      component:ProfileView,
+    },
+    ]
   },
   {
     name:"gateway",
@@ -48,6 +59,7 @@ const routers =[
 ]
 
 const router = new  VueRouter({mode:'history',routes:routers})
+router.push('/login')
 
 new Vue({
   vuetify,

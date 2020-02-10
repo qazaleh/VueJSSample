@@ -1,17 +1,47 @@
 <template>
-    <v-expand-x-transition>
+<div>
+    <v-app-bar
+            class="transparent"
+            light
+            elevation="0"
+            dense
+    >
+        <div  v-if="drawer" style="padding-right: 250px;">
+            <v-btn
+                    class="v-btn-side-menu"
+                    @click.stop="drawer = !drawer"
+                    fab
+                    small
+                    dark
+            >
+                <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+        </div>
+        <div  v-else style="padding-right: 10px;">
+            <v-btn
+                    class="v-btn-side-menu"
+                    @click.stop="drawer = !drawer"
+                    fab
+                    small
+                    dark
+            >
+                <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+        </div>
 
+<!--        <v-app-bar-nav-icon @click.stop="mini = !mini"></v-app-bar-nav-icon>-->
+    </v-app-bar>
     <v-navigation-drawer
-                                    class="v-navigation-drawer-flat pa-0 "
+                                   class="v-navigation-drawer-flat "
+
+                                   temporary
                                    app
                                    right
-                                   permanent
                                    dark
-                                   mobile-break-point="991"
                                    v-model="drawer"
-                                   :mini-variant.sync="mini"
                                    :style="{background: gradient}"
-
+                                   disable-resize-watcher
+                                   width="249px"
     >
 
         <v-list
@@ -24,18 +54,7 @@
                                        <h1  class="h1-headerName">آتی پی</h1>
                                    </v-row>
                                    <v-row style="      align-content: center;alignment: center;align-items: center;justify-content: center;justify-items: center; padding-bottom: 5px">
-<!--                                       <div  style="padding-right: 210px;margin-top: -15px">-->
-                                           <v-btn
-                                                   class="v-btn-side-menu"
-                                                   @click.stop="mini = !mini"
-                                                   fab
-                                                   small
-                                                   dark
-                                           >
-                                               <v-icon v-if="mini">mdi-chevron-left</v-icon>
-                                               <v-icon v-else>mdi-chevron-right</v-icon>
-                                           </v-btn>
-<!--                                       </div>-->
+
                                    </v-row>
 
                                    <v-list-item
@@ -54,7 +73,7 @@
                                    </v-list-item>
                                </v-list>
                            </v-navigation-drawer>
-    </v-expand-x-transition>
+</div>
 </template>
 
 <script>
@@ -64,8 +83,8 @@
         name: "SideMenu",
         data () {
             return {
-                mini:true,
-                drawer:true,
+                mini:false,
+                drawer:false,
                 props: {
 
                 },
@@ -153,7 +172,7 @@
         border-radius: 0!important;
         /*clip-path: inset(0px 0px fill 249px);*/
         /*shape-outside: ellipse(150px 300px at 50% 50%);*/
-        transition: all 500ms ease-out 50ms;
+        transition: all 500ms ease-in-out 30ms;
 
 
     }

@@ -95,6 +95,7 @@
             }
             },
             showDashboard(){
+                // this.$router.push({ name: '/dashboard', params: { userId: '123' } })
                 this.$router.push('/dashboard')
             }
 

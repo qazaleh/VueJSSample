@@ -1,6 +1,6 @@
 <template>
-    <v-container fluid class="transparent" >
-        <v-row>
+    <v-container>
+        <v-row >
             <v-col md="6" xl="6" lg="6" sm="12" xs="12">
                 <v-row class="v-row-right-content" style="margin-right: 10px">
                     <p class="v-toolbar-title-profile-header">پروفایل کاربری</p>
@@ -63,6 +63,11 @@
                 ],
             }
         },
+        methods:{
+            screenWidth(){
+                return "Total Width: " + screen.width;
+            }
+        }
 
     }
 </script>

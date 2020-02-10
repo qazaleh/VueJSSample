@@ -1,41 +1,42 @@
 <template>
     <v-app>
-        <v-content >
             <side-menu/>
-            <v-row wrap >
-            <v-col md="9" lg="9" xl="9"  sm="12" xs="12"  class="#f4f5f7">
-                <v-row style="  align-content: center;
+        <v-container fluid  class="#f4f5f7">
+            <v-row justify="end" no-gutters class="transparent">
+                <v-col class="transparent"  cols="12" md="9">
+                    <v-row style="  align-content: center;
         alignment: center;
         align-items: center;
         justify-content: center;
         justify-items: center;
-        border-radius: 18px!important;
-        margin-right: 20px">
-                <v-card class="transparent" flat width="85%" height="fill-height" style="border-radius: 0px !important;">
-                <router-view class="transparent"></router-view>
-                </v-card>
-                </v-row>
-            </v-col>
-            <v-col md="3" lg="3" xl="3"  sm="12" xs="12"  class="white">
-                <v-row justify="center" align-content="center">
-                    <v-card flat class="transparent">
-                        <home-toolbar/>
-                    </v-card>
-                </v-row>
+        border-radius: 18px!important;">
+                        <v-card class="transparent" flat width="85%" height="fill-height" style="border-radius: 0px !important;">
+                            <router-view></router-view>
+                        </v-card>
+                    </v-row>
+                </v-col>
+                <v-col
+                        :class="{'mt-n12': $vuetify.breakpoint.mdAndUp,} "
+                        class="white"
+                       cols="12" md="3">
+                    <v-row justify="center" align-content="center">
+                        <v-card flat class="transparent">
+                            <home-toolbar/>
+                        </v-card>
+                    </v-row>
 
-                <v-row justify="center" align-content="center pt-8" >
-                    <v-card flat class="transparent">
-                        <UserInformationHome/>
-                    </v-card>
-                </v-row>
-                <v-row justify="center" align-content="center pt-8"  >
-                    <user-time-line v-bind:complete-register="true" user-state="registered"></user-time-line>
-                </v-row>
-            </v-col>
-        </v-row>
-        </v-content>
+                    <v-row justify="center" align-content="center pt-8" >
+                        <v-card flat class="transparent">
+                            <UserInformationHome/>
+                        </v-card>
+                    </v-row>
+                    <v-row justify="center" align-content="center pt-8"  >
+                        <user-time-line v-bind:complete-register="true" user-state="registered"></user-time-line>
+                    </v-row>
+                </v-col>
+            </v-row>
+        </v-container>
     </v-app>
-
 </template>
 
 <script>
