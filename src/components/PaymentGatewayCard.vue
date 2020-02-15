@@ -1,5 +1,5 @@
 <template>
-    <v-card class="v-card-payment-gateway">
+    <v-card class="v-card-payment-gateway fill-height">
             <v-row >
                 <v-col class="">
                     <v-row class="v-row-right-content" >
@@ -11,8 +11,8 @@
                     <v-row class="v-row-left-content" style="padding-top: 20px">
                     <v-chip
                             class="v-chip-gateway-status"
-                            color="teal"
-                            text-color="white"
+                            :color = this.cardStatusColor()
+                            :text-color = this.cardStatusTextColor()
                             style="margin-right: 10px"
                     >
                         <v-avatar right>
@@ -39,6 +39,49 @@
                 <v-row class="v-row-right-content" >
                     <p class="p-gateway-num">{{card.walletType}}</p>
                 </v-row>
+            </v-col>
+        </v-row>
+        <v-divider style="margin-right: 25px;margin-left: 25px"></v-divider>
+        <v-row class="v-row-center-content justify-space-around">
+            <v-col cols="3">
+                <v-tooltip bottom color="#253858">
+                    <template  v-slot:activator="{ on }">
+                <v-btn elevation="0" icon v-on="on">
+                    <v-icon size="20" color="#253858">mdi-chart-line</v-icon>
+                </v-btn>
+                    </template>
+                    <span class="span-gateway-tooltip">ویرایش درگاه</span>
+                </v-tooltip>
+            </v-col>
+            <v-col cols="3">
+                <v-tooltip bottom color="#253858">
+                    <template v-slot:activator="{ on }">
+                        <v-btn elevation="0" icon v-on="on">
+                            <v-icon size="20" color="#253858">mdi-file-table-outline</v-icon>
+                        </v-btn>
+                    </template>
+                    <span class="span-gateway-tooltip">تنظیمات درگاه</span>
+                </v-tooltip>
+            </v-col>
+            <v-col cols="3">
+                <v-tooltip bottom color="#253858">
+                    <template v-slot:activator="{ on }">
+                        <v-btn elevation="0" icon v-on="on">
+                            <v-icon size="20" color="#253858">mdi-hexagon-multiple-outline</v-icon>
+                        </v-btn>
+                    </template>
+                    <span class="span-gateway-tooltip">گزارشات درگاه</span>
+                </v-tooltip>
+            </v-col>
+            <v-col cols="3">
+                <v-tooltip bottom color="#253858">
+                    <template v-slot:activator="{ on }">
+                        <v-btn elevation="0" icon v-on="on">
+                            <v-icon size="20" color="#253858">mdi-border-color</v-icon>
+                        </v-btn>
+                    </template>
+                    <span class="span-gateway-tooltip">نمودار گذارشات</span>
+                </v-tooltip>
             </v-col>
         </v-row>
     </v-card>
@@ -71,6 +114,26 @@
                     return 'تایید شده'
                 }
 
+            },
+            cardStatusColor: function() {
+                if (this.card.status === '0') {
+                    return '#ffbdad'
+                }else if (this.card.status === '1') {
+                    return '#fff0b3'
+                }else {
+                    return '#abf5d1'
+                }
+
+            },
+            cardStatusTextColor: function() {
+                if (this.card.status === '0') {
+                    return '#de350b'
+                }else if (this.card.status === '1') {
+                    return '#ff991f'
+                }else {
+                    return '#00875a'
+                }
+
             }
         }
 
@@ -80,7 +143,6 @@
 <style scoped>
     .v-card-payment-gateway {
         width: 400px;
-        height: 225px;
         border-radius: 17px!important;
         box-shadow: 0 4px 13px 0 rgba(117, 117, 117, 0.09);
         background-color: #ffffff;
@@ -111,6 +173,12 @@
 
         justify-content: flex-start;
         margin-right: 10%;
+    }
+    .v-row-center-content {
+
+        justify-content: center;
+        margin-right: 10%;
+
     }
     .v-row-left-content {
 
@@ -153,5 +221,22 @@
         margin-top: -15px;
 
     }
+    .span-gateway-tooltip{
+        font-family: 'IRANSansMobile(FaNum)';
+        font-size: 10px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #ffffff;
+    }
+    .template-gateway-tooltip{
+        border-radius: 3px!important;
+        box-shadow: 0 2px 4px 0 rgba(9, 30, 66, 0.25);
+        background-color: #253858;
+    }
+
 
 </style>

@@ -12,10 +12,12 @@
         <v-row>
             <v-col md="6" xl="6" lg="6" sm="12" xs="12">
                 <v-row class="v-row-right-content" >
+                    <div light elevation="0" class=" div-gradient-border">
                     <v-btn class="v-btn-gradient-border" elevation="0" light>
                         <v-icon class="v-icon-timer">mdi-plus</v-icon>
                         ساخت درگاه جدید
                     </v-btn>
+                    </div>
                 </v-row>
             </v-col>
         </v-row>
@@ -88,18 +90,30 @@
     }
 
     .v-btn-gradient-border {
-        width: 204px;
-        height: 47px;
-        border-radius: 23px!important;
-        border-style: solid;
-        border-width: 1px;
+
         font-family: 'IRANSansMobile(FaNum)';
         font-size: 13px;
         color: #b10dbb;
-        border-image-source: linear-gradient( to right, #27269c 25%, #e005c5 51%, #e005c5 100%) !important;
-        border-image-slice: 1;
+        border-radius: 23px!important;
+
+
     }
 
+    .div-gradient-border {
+        width: 173px;
+        height: 39px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
+        background: linear-gradient( to right, #27269c 25%, #e005c5 88%, #e005c5 100%)!important;
+        border-radius: 23px !important;
+
+        /*border-image-source: linear-gradient( to right, #27269c 25%, #e005c5 51%, #e005c5 100%)!important;*/
+        /*border-image-slice: 2;*/
+        /*border-radius: 23px!important;*/
+        /*border-style: solid !important;*/
+        /*border-width: 2px!important;*/
+    }
 
 </style>

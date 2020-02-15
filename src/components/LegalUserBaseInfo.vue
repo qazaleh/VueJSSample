@@ -3,19 +3,21 @@
 
         <v-row class="wrap">
             <v-col cols="12" md="6">
-                <v-text-field class="v-textField-profile "  dense v-model="firstName" label="نام"  :rules="inputRules"/>
-                <v-text-field class="v-textField-profile "  dense v-model="lastName" label="نام خانوادگی"  :rules="inputRules"/>
+                <v-text-field class="v-textField-profile "  dense v-model="companyName" label="نام شرکت یا سازمان"  :rules="inputRules"/>
+                <v-text-field class="v-textField-profile "  dense v-model="nationalID" label="شناسه ملی"  :rules="inputRules"/>
+                <v-text-field class="v-textField-profile "  dense v-model="registrationNumber" label="شماره ثبت"  :rules="inputRules"/>
+
                 <v-menu
                         ref="menu"
                         v-model="menu"
                         :close-on-content-click="false"
-                        :return-value.sync="birthDate"
+                        :return-value.sync="registrationDate"
                         transition="scale-transition"
                         offset-y
                         min-width="290px"
                 >
                     <template v-slot:activator="{ on }">
-                        <v-text-field class="v-textField-profile " v-on="on" readonly append-icon="mdi-calendar" dense v-model="birthDate" label="تاریخ تولد"  :rules="inputRules"/>
+                        <v-text-field class="v-textField-profile " v-on="on" readonly append-icon="mdi-calendar" dense v-model="registrationDate" label="تاریخ ثبت"  :rules="inputRules"/>
                     </template>
                     <v-date-picker v-model="date" no-title scrollable>
                         <v-spacer></v-spacer>
@@ -23,15 +25,12 @@
                         <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
                     </v-date-picker>
                 </v-menu>
-                <v-text-field class="v-textField-profile "  dense v-model="ideNumber" label="کد ملی"  :rules="inputRules"/>
                 <v-row
                         class="transparent  v-row-right-content" style="padding-right: 10px">
                     <p class="profile-header-blue" >اطلاعات تماس</p>
                 </v-row>
-                <v-text-field class="v-textField-profile "  dense v-model="phoneNumber" label="شماره تلفن ثابت"  :rules="inputRules"/>
                 <v-text-field class="v-textField-profile "  dense v-model="postalCode" label="کد پستی"  :rules="inputRules"/>
                 <v-text-field class="v-textField-profile "  dense v-model="address" label="نشانی"  :rules="inputRules"/>
-                <v-text-field class="v-textField-profile "  dense v-model="addressHeader" label="عنوان آدرس(محل کار، محل سکونت، سایر)"  :rules="inputRules"/>
             </v-col>
             <v-col cols="12" md="6">
                 <v-row justify="space-between" style="padding-bottom: 10px ;">
@@ -41,39 +40,29 @@
                             قبول است. حداکثر ۲۰ مگ…</p>
                     </v-col>
                     <v-col cols="12" md="6">
-                    <div class="v-card-profile-image-rectangle pt-9 image-input" flat align="center"   :style="{ 'background-image': `url(${imageData})` }"
-                    >
-                        <input type="file" id="file" />
-                        <label for="file" >
+                        <v-card class="v-card-profile-image-rectangle pt-9" flat align="center" >
                             <v-icon class="v-icon-add">mdi-plus-box-outline</v-icon>
-                        </label>
-                        </div>
+                        </v-card>
                     </v-col>
                 </v-row>
                 <v-row justify="space-between" style="padding-bottom: 10px ;">
                     <v-col cols="12" md="6">
-                    <p class="p-field">بارگزاری تصویر شناسنامه</p>
+                        <p class="p-field">بارگزاری شناسنامه مدیر</p>
                     </v-col>
                     <v-col cols="12" md="6">
-                    <v-card class="v-card-profile-image-small-rectangle pt-3" flat align="center">
-                        <input type="file" id="nationalId" />
-                        <label for="nationalId" >
+                        <v-card class="v-card-profile-image-small-rectangle pt-3" flat align="center">
                             <v-icon class="v-icon-add">mdi-plus-box-outline</v-icon>
-                        </label>
-                    </v-card>
+                        </v-card>
                     </v-col>
                 </v-row>
                 <v-row justify="space-between" style="padding-bottom: 10px ;">
                     <v-col cols="12" md="6">
-                    <p class="p-field">بارگزاری تصویر کارت ملی</p>
+                        <p class="p-field">بارگزاری کارت ملی مدیر</p>
                     </v-col>
                     <v-col cols="12" md="6">
-                    <v-card class="v-card-profile-image-small-rectangle pt-3" flat align="center">
-                        <input type="file" id="nationalCard" />
-                        <label for="nationalCard" >
+                        <v-card class="v-card-profile-image-small-rectangle pt-3" flat align="center">
                             <v-icon class="v-icon-add">mdi-plus-box-outline</v-icon>
-                        </label>
-                    </v-card>
+                        </v-card>
                     </v-col>
                 </v-row>
             </v-col>
@@ -86,7 +75,7 @@
 
 <script>
     export default {
-        name: "RealUserBaseInfo",
+        name: "LegalUserBaseInfo",
         props: {
             currentStep: String,
             steps:String
@@ -96,16 +85,13 @@
                 imageName: '',
                 imageUrl: '',
                 imageFile: '',
-                firstName:'',
+                companyName:'',
                 lastName:'',
-                birthDate:'',
-                ideNumber:'',
-                phoneNumber:'',
+                nationalID:'',
+                registrationNumber:'',
+                registrationDate:'',
                 postalCode:'',
                 address:'',
-                addressHeader:'',
-                switch1: false,
-                imageData: null,
                 inputRules: [
                     v => !!v || 'پر کردن این آیتم اجباری می‌باشد',
                 ],
@@ -132,18 +118,6 @@
             onFileChange(e) {
                 const file = e.target.files[0];
                 this.url = URL.createObjectURL(file);
-            },
-            onSelectFile () {
-                const input = this.$refs.fileInput
-                const files = input.files
-                if (files && files[0]) {
-                    const reader = new FileReader
-                    reader.onload = e => {
-                        this.imageData = e.target.result
-                    }
-                    reader.readAsDataURL(files[0])
-                    this.$emit('input', files[0])
-                }
             }
         }
     }
@@ -239,39 +213,5 @@
         letter-spacing: normal;
         text-align: right;
         color: #5a565e;
-    }
-
-/*    input file*/
-    [type="file"] {
-        height: 0;
-        overflow: hidden;
-        width: 0;
-    }
-    [type="file"] + label {
-        border: none;
-
-        vertical-align: middle;
-        horiz-align: center;
-    }
-
-/*    image input*/
-
-    .image-input {
-        display: block;
-        cursor: pointer;
-        background-size :cover;
-        background-position: center center;
-    }
-    .placeholder {
-        background: #F0F0F0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #333;
-    }
-    .file-input {
-        display :none;
     }
 </style>
