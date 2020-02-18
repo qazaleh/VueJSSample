@@ -21,12 +21,19 @@
                 </v-row>
             </v-col>
         </v-row>
-            <v-row>
+        <h1 class="h1-gateway-top-header">جستجوی پیشرفته</h1>
+        <v-row>
             <v-col v-for="card in cards" :key="card.title" :card="card" >
-                <payment-gateway-card :card="card" />
+<!--                <payment-gateway-card  :card="card" :class-type="'v-card-payment-gateway fill-height'">-->
+<!--                </payment-gateway-card>-->
+<!--                v-card-payment-gateway-->
+
+                <payment-gateway-card v-if="card.status === '0'" :card="card" :class-type="'v-card-overlay-blur fill-height'">
+                </payment-gateway-card>
+                <payment-gateway-card v-else :card="card" :class-type="'v-card-payment-gateway fill-height'">
+                </payment-gateway-card>
             </v-col>
             </v-row>
-
     </v-container>
 </template>
 
@@ -42,19 +49,25 @@
                         status:'2',
                         title:'درگاه نرمون',
                         gateWayNumber:'۲۳۴۵۶۷۸۹۰۹۸۷۶۵۴۳۲۳',
-                        walletType:'کیف‌پول اصلی من'
+                        walletType:'کیف‌پول اصلی من',
+                        settlement:false,
+                        activation:true,
                     },
                     {
                         status:'1',
                         title:'درگاه نرمون',
                         gateWayNumber:'۲۳۴۵۶۷۸۹۰۹۸۷۶۵۴۳۲۳',
-                        walletType:'کیف‌پول اصلی من'
+                        walletType:'کیف‌پول اصلی من',
+                        settlement:true,
+                        activation:false,
                     },
                     {
                         status:'0',
                         title:'درگاه نرمون',
                         gateWayNumber:'۲۳۴۵۶۷۸۹۰۹۸۷۶۵۴۳۲۳',
-                        walletType:'کیف‌پول اصلی من'
+                        walletType:'کیف‌پول اصلی من',
+                        settlement:false,
+                        activation:false,
                     },
 
                 ],
@@ -116,4 +129,24 @@
         /*border-width: 2px!important;*/
     }
 
+    .h1-gateway-top-header {
+        font-family: 'IRANSansMobile(FaNum)';
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #253858;
+        padding-bottom: 20px;
+        padding-top: 20px;
+
+    }
+    .v-card-overlay-blur {
+        width: 400px;
+        border-radius: 17px!important;
+        box-shadow: 0 4px 13px 0 rgba(117, 117, 117, 0.09);
+        background-color: rgb(255, 255, 255); opacity: 0.5;
+    }
 </style>

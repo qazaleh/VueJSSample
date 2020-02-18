@@ -1,7 +1,7 @@
 <template>
-    <v-card class="v-card-payment-gateway fill-height">
+    <v-card :class="classType">
             <v-row >
-                <v-col class="">
+                <v-col >
                     <v-row class="v-row-right-content" >
                         <v-card  flat class="v-car-gateway-image"></v-card>
                         <v-card-title class="v-card-title-gateway pr-1">{{card.title}}</v-card-title>
@@ -13,7 +13,7 @@
                             class="v-chip-gateway-status"
                             :color = this.cardStatusColor()
                             :text-color = this.cardStatusTextColor()
-                            style="margin-right: 10px"
+                            style="margin-right: 10px ; opacity: 1!important;"
                     >
                         <v-avatar right>
                             <v-icon size="15" style="padding-left: 20px">mdi-alarm</v-icon>
@@ -44,58 +44,64 @@
         <v-divider style="margin-right: 25px;margin-left: 25px"></v-divider>
         <v-row class="v-row-center-content justify-space-around">
             <v-col cols="3">
-                <v-tooltip bottom color="#253858">
+                <v-tooltip bottom color="#253858" :disabled="buttonActionEnable()">
                     <template  v-slot:activator="{ on }">
-                <v-btn elevation="0" icon v-on="on">
+                <v-btn elevation="0" icon v-on="on" :disabled="buttonActionEnable()">
                     <v-icon size="20" color="#253858">mdi-chart-line</v-icon>
                 </v-btn>
                     </template>
-                    <span class="span-gateway-tooltip">ویرایش درگاه</span>
+                    <span class="span-gateway-tooltip">نمودار گزارشات</span>
                 </v-tooltip>
             </v-col>
             <v-col cols="3">
-                <v-tooltip bottom color="#253858">
+                <v-tooltip bottom color="#253858" :disabled="buttonActionEnable()">
                     <template v-slot:activator="{ on }">
-                        <v-btn elevation="0" icon v-on="on">
+                        <v-btn elevation="0" icon v-on="on" :disabled="buttonActionEnable()">
                             <v-icon size="20" color="#253858">mdi-file-table-outline</v-icon>
-                        </v-btn>
-                    </template>
-                    <span class="span-gateway-tooltip">تنظیمات درگاه</span>
-                </v-tooltip>
-            </v-col>
-            <v-col cols="3">
-                <v-tooltip bottom color="#253858">
-                    <template v-slot:activator="{ on }">
-                        <v-btn elevation="0" icon v-on="on">
-                            <v-icon size="20" color="#253858">mdi-hexagon-multiple-outline</v-icon>
                         </v-btn>
                     </template>
                     <span class="span-gateway-tooltip">گزارشات درگاه</span>
                 </v-tooltip>
             </v-col>
             <v-col cols="3">
-                <v-tooltip bottom color="#253858">
+                <v-tooltip bottom color="#253858" :disabled="buttonActionEnable()">
                     <template v-slot:activator="{ on }">
-                        <v-btn elevation="0" icon v-on="on">
+                        <v-btn elevation="0" icon v-on="on" :disabled="buttonActionEnable()" @click.stop="showScheduleForm=true">
+                            <v-icon size="20" color="#253858">mdi-hexagon-multiple-outline</v-icon>
+                        </v-btn>
+                        <gateway-setting-form :visible="showScheduleForm" :card="this.card" @close="showScheduleForm=false" />
+                    </template>
+                    <span class="span-gateway-tooltip">تنظیمات درگاه</span>
+                </v-tooltip>
+            </v-col>
+            <v-col cols="3">
+                <v-tooltip bottom color="#253858" :disabled="buttonActionEnable()">
+                    <template v-slot:activator="{ on }">
+                        <v-btn elevation="0" icon v-on="on" :disabled="buttonActionEnable()">
                             <v-icon size="20" color="#253858">mdi-border-color</v-icon>
                         </v-btn>
                     </template>
-                    <span class="span-gateway-tooltip">نمودار گذارشات</span>
+                    <span class="span-gateway-tooltip">ویرایش درگاه</span>
                 </v-tooltip>
             </v-col>
         </v-row>
+
     </v-card>
 </template>
 
 <script>
+    import GatewaySettingForm from "@/components/GatewaySettingForm";
     export default {
         name: "PaymentGatewayCard",
+        components: {GatewaySettingForm},
         data(){
             return{
                 currentStatus : String,
+                showScheduleForm: false
             }
         },
         props:{
+            classType:String,
             card: {
 
                     status:'',
@@ -134,7 +140,15 @@
                     return '#00875a'
                 }
 
-            }
+            },
+            buttonActionEnable: function() {
+                if (this.card.status === '0') {
+                    return true;
+                }else {
+                    return false;
+                }
+
+            },
         }
 
     }
@@ -235,8 +249,7 @@
     .template-gateway-tooltip{
         border-radius: 3px!important;
         box-shadow: 0 2px 4px 0 rgba(9, 30, 66, 0.25);
-        background-color: #253858;
+        background-color: #253858 ;
     }
-
 
 </style>
