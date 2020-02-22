@@ -3,9 +3,14 @@
 
   <v-app>
 
-      <MainRoot v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>
+<!--      <MainRoot v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>-->
+<!--      <login-form v-if='this.$route.name === "login"'/>-->
+<!--      <otp-code-view v-if='this.$route.name === "otp"'/>-->
+
       <login-form v-if='this.$route.name === "login"'/>
-      <otp-code-view v-if='this.$route.name === "otp"'/>
+      <otp-code-view v-else-if='this.$route.name === "otp"'/>
+      <panel-help v-else/>
+<!--      <MainRoot v-else/>-->
 
   </v-app>
 
@@ -16,9 +21,10 @@
 
 //  import LoginForm from "@/components/LoginForm";
 
-import MainRoot from "@/components/MainRoot";
+// import MainRoot from "@/components/MainRoot";
 import LoginForm from "@/components/LoginForm";
 import OtpCodeView from "@/components/OtpCodeView";
+import PanelHelp from "@/components/PanelHelp";
 export default {
     name: 'App',
     el: '#app',
@@ -26,8 +32,9 @@ export default {
       this.$vuetify.rtl = true;
     },
     components: {
+        PanelHelp,
         OtpCodeView,
-        MainRoot,
+        // MainRoot,
         LoginForm,
 
     },

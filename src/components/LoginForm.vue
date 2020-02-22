@@ -16,7 +16,7 @@
                     <p class="p-message">برای ورود یا عضویت شماره موبایل خود را وارد کنید.</p>
                 </v-row>
                     <v-form class="px-3" ref="form">
-                        <v-text-field class="v-textField-mobile "  dense v-model="mobileNumber" label="شماره موبایل"  @keypress="onlyNumber" type="text" :maxlength="maxInput" :rules="inputRules"/>
+                        <v-text-field class="v-textField-mobile "  dense v-model.number="mobileNumber" label="شماره موبایل"  @keypress="onlyNumber" type="text" :maxlength="maxInput" :rules="inputRules"/>
                         <v-btn dark  class="btn-grad" elevation="0" @click="login">ارسال پیامک</v-btn>
                     </v-form>
             </v-card>

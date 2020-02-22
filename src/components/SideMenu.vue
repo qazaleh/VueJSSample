@@ -43,7 +43,6 @@
                                    disable-resize-watcher
                                    width="249px"
     >
-
         <v-list
                                        dense
                                        nav
@@ -61,14 +60,14 @@
                                            v-for="item in links"
                                            :key="item.title"
                                            link
-                                           router :to="item.route"
+                                           @click="routeView(item)"
                                    >
+<!--                                       router :to="item.route"-->
                                        <v-list-item-icon>
-                                           <v-icon>{{ item.icon }}</v-icon>
+                                           <v-icon>{{ item.icon}}</v-icon>
                                        </v-list-item-icon>
-
                                        <v-list-item-content class="ps-0">
-                                           <v-list-item-title class="v-list-item-title" >{{ item.text }}</v-list-item-title>
+                                           <v-list-item-title class="v-list-item-title" >{{item.text}}</v-list-item-title>
                                        </v-list-item-content>
                                    </v-list-item>
                                </v-list>
@@ -103,6 +102,11 @@
                         text:'درگاه‌های پرداخت',
                         route:'/gateway'
                     },
+                    {
+                        icon:'mdi-alert-circle-outline',
+                        text:'راهنمای پنل',
+                        // route:'/panelHelp'
+                    },
                     // {
                     //     icon:'mdi-wallet-outline',
                     //     text:'کیف پول',
@@ -128,17 +132,16 @@
                     //     text:'تیکت ها',
                     //     route:'/team'
                     // },
-                    // {
-                    //     icon:'mdi-alert-circle-outline',
-                    //     text:'راهنمای پنل',
-                    //     route:'/team'
-                    // },
+
 
                 ]
             }},
         methods: {
             closeSidebarPanel() {
                 this.isPanelOpen = !this.isPanelOpen;
+            },
+            routeView(item){
+                this.$router.push(item.route);
             }
 
         },

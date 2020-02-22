@@ -11,7 +11,8 @@
         justify-items: center;
         border-radius: 18px!important;">
                         <v-card class="transparent" flat width="85%" height="fill-height" style="border-radius: 0px !important;">
-                            <router-view></router-view>
+<!--                            <router-view class="view two" name="a"></router-view>-->
+                            <router-view class="main"/>
                         </v-card>
                     </v-row>
                 </v-col>

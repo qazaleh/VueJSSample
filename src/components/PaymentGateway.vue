@@ -28,6 +28,7 @@
 <!--                </payment-gateway-card>-->
 <!--                v-card-payment-gateway-->
 
+<!--                <payment-gateway-card :card="this.card"/>-->
                 <payment-gateway-card v-if="card.status === '0'" :card="card" :class-type="'v-card-overlay-blur fill-height'">
                 </payment-gateway-card>
                 <payment-gateway-card v-else :card="card" :class-type="'v-card-payment-gateway fill-height'">
@@ -143,10 +144,5 @@
         padding-top: 20px;
 
     }
-    .v-card-overlay-blur {
-        width: 400px;
-        border-radius: 17px!important;
-        box-shadow: 0 4px 13px 0 rgba(117, 117, 117, 0.09);
-        background-color: rgb(255, 255, 255); opacity: 0.5;
-    }
+
 </style>

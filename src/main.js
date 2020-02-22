@@ -11,7 +11,12 @@ import PaymentGateway from "@/components/PaymentGateway";
 // import UserWorkFlow from "@/components/UserWorkFlow";
 // import WalletDiagrams from "@/components/WalletDiagrams";
 // import CustomerInfo from "@/components/CustomerInfo";
-import ProfileView from "@/components/ProfileView";
+// import ProfileView from "@/components/ProfileView";
+import PanelHelp from "@/components/PanelHelp";
+import PanelPrivacyPolicy from "@/components/PanelPrivacyPolicy";
+import PanelRules from "@/components/PanelRules";
+import PanelCommonQuestion from "@/components/PanelCommonQuestion";
+import PanelUsageHelp from "@/components/PanelUsageHelp";
 
 Vue.config.productionTip = false
 Vue.config.rtl = true
@@ -44,17 +49,43 @@ const routers =[
     name:"dashboard",
     path:"/dashboard",
     component:Dashboard,
-    children: [{
-      name:"userProfile",
-      path:"userProfile",
-      component:ProfileView,
-    },
-    ]
+    class:'main'
   },
   {
     name:"gateway",
     path:"/gateway",
     component:PaymentGateway,
+    class:'main'
+  },
+  {
+    name:"PanelHelp",
+    path:"/panelHelp",
+    component:PanelHelp,
+    class:'main'
+  },
+  {
+    name:"help",
+    path:"/help",
+    component:PanelUsageHelp,
+    class:'panelHelpTab'
+  },
+  {
+    name:"commonQuestions",
+    path:"/commonQuestions",
+    component:PanelCommonQuestion,
+    class:'panelHelpTab'
+  },
+  {
+    name:"rules",
+    path:"/rules",
+    component:PanelRules,
+    class:'panelHelpTab'
+  },
+  {
+    name:"privacy",
+    path:"/privacy",
+    component:PanelPrivacyPolicy,
+    class:'panelHelpTab'
   },
 ]
 

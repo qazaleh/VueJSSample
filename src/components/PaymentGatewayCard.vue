@@ -1,6 +1,7 @@
 <template>
     <v-card :class="classType">
-            <v-row >
+<!--        <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>-->
+        <v-row >
                 <v-col >
                     <v-row class="v-row-right-content" >
                         <v-card  flat class="v-car-gateway-image"></v-card>
@@ -97,7 +98,9 @@
         data(){
             return{
                 currentStatus : String,
-                showScheduleForm: false
+                showScheduleForm: false,
+                activeClass:'v-card-overlay-blur fill-height',
+                deactivateClass:'v-card-overlay-blur fill-height',
             }
         },
         props:{
@@ -251,5 +254,10 @@
         box-shadow: 0 2px 4px 0 rgba(9, 30, 66, 0.25);
         background-color: #253858 ;
     }
-
+    .v-card-overlay-blur {
+        width: 400px;
+        border-radius: 17px!important;
+        box-shadow: 0 4px 13px 0 rgba(117, 117, 117, 0.09);
+        background-color: rgb(255, 255, 255); opacity: 0.5;
+    }
 </style>
