@@ -1,5 +1,7 @@
 <template>
-    <div class="purple"/>
+    <div class="purple">
+        <h1>privacy header</h1>
+    </div>
 </template>
 
 <script>

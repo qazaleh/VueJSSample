@@ -9,8 +9,10 @@
 
       <login-form v-if='this.$route.name === "login"'/>
       <otp-code-view v-else-if='this.$route.name === "otp"'/>
-      <panel-help v-else/>
+      <PanelHelp v-else-if='this.$route.name === "panelHelp"'/>
 <!--      <MainRoot v-else/>-->
+
+      <router-view  v-else></router-view>
 
   </v-app>
 
@@ -25,6 +27,7 @@
 import LoginForm from "@/components/LoginForm";
 import OtpCodeView from "@/components/OtpCodeView";
 import PanelHelp from "@/components/PanelHelp";
+// import PanelHelp from "@/components/PanelHelp";
 export default {
     name: 'App',
     el: '#app',
@@ -33,6 +36,7 @@ export default {
     },
     components: {
         PanelHelp,
+        // PanelHelp,
         OtpCodeView,
         // MainRoot,
         LoginForm,

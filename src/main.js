@@ -17,6 +17,8 @@ import PanelPrivacyPolicy from "@/components/PanelPrivacyPolicy";
 import PanelRules from "@/components/PanelRules";
 import PanelCommonQuestion from "@/components/PanelCommonQuestion";
 import PanelUsageHelp from "@/components/PanelUsageHelp";
+import ComplaintSubmittingForm from "@/components/ComplaintSubmittingForm";
+
 
 Vue.config.productionTip = false
 Vue.config.rtl = true
@@ -44,49 +46,82 @@ const routers =[
     name:"home",
     path:"/home",
     component:MainRoot,
+      children: [
+          {
+              path:"/dashboard",
+              component:Dashboard,
+          },
+          {
+              path:"/gateway",
+              component:PaymentGateway,
+              class:'main'
+          },
+      ]
   },
-  {
-    name:"dashboard",
-    path:"/dashboard",
-    component:Dashboard,
-    class:'main'
-  },
-  {
-    name:"gateway",
-    path:"/gateway",
-    component:PaymentGateway,
-    class:'main'
-  },
-  {
-    name:"PanelHelp",
-    path:"/panelHelp",
-    component:PanelHelp,
-    class:'main'
-  },
-  {
-    name:"help",
-    path:"/help",
-    component:PanelUsageHelp,
-    class:'panelHelpTab'
-  },
-  {
-    name:"commonQuestions",
-    path:"/commonQuestions",
-    component:PanelCommonQuestion,
-    class:'panelHelpTab'
-  },
-  {
-    name:"rules",
-    path:"/rules",
-    component:PanelRules,
-    class:'panelHelpTab'
-  },
-  {
-    name:"privacy",
-    path:"/privacy",
-    component:PanelPrivacyPolicy,
-    class:'panelHelpTab'
-  },
+    {
+        name:"PanelHelp",
+        path:"/panelHelp",
+        component:PanelHelp,
+        children:[
+            {
+                name:"help",
+                path:"/help",
+                component:PanelUsageHelp,
+            },
+            {
+                name:"commonQuestions",
+                path:"/commonQuestions",
+                component:PanelCommonQuestion,
+            },
+            {
+                name:"rules",
+                path:"/rules",
+                component:PanelRules,
+            },
+            {
+                name:"privacy",
+                path:"/privacy",
+                component:PanelPrivacyPolicy,
+            },
+            {
+                name:"complainForm",
+                path:"/complainForm",
+                component:ComplaintSubmittingForm,
+            }
+        ]
+    },
+    // {
+    //     name:"help",
+    //     path:"/help",
+    //     component:PanelUsageHelp,
+    // },
+    // {
+    //     name:"commonQuestions",
+    //     path:"/commonQuestions",
+    //     component:PanelCommonQuestion,
+    // },
+    // {
+    //     name:"rules",
+    //     path:"/rules",
+    //     component:PanelRules,
+    // },
+    // {
+    //     name:"privacy",
+    //     path:"/privacy",
+    //     component:PanelPrivacyPolicy,
+    // }
+  // {
+  //   name:"dashboard",
+  //   path:"/dashboard",
+  //   component:Dashboard,
+  // },
+  // {
+  //   name:"gateway",
+  //   path:"/gateway",
+  //   component:PaymentGateway,
+  //   class:'main'
+  // },
+
 ]
 
 const router = new  VueRouter({mode:'history',routes:routers})

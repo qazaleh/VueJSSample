@@ -1,39 +1,45 @@
 <template>
-<!--    <v-app>-->
-<!--        <v-toolbar extension-height="28px" height="38px" app>-->
-<!--            <tabs-row slot="extension"></tabs-row>-->
-<!--        </v-toolbar>-->
-<!--    </v-app>-->
     <v-app>
-    <v-card>
-        <v-toolbar extension-height="30px" height="90px" app
-                color="#ffffff"
-                dark
-                flat
-                elevation="4"
-        >
-            <card>
-                <div class="Oval" ></div>
+        <v-card>
+            <v-toolbar
+                    color="#ffffff"
+                    dark
+                    flat
+            >
+                <div class="Oval" style="margin-right:39px" ></div>
                 <div class="Oval" style="margin-right: -20px;" ></div>
                 <h1  class="h1-nav-header">آتی پی</h1>
-            </card>
-            <template >
-                <v-tabs
-                        v-model="model"
-                        centered
-                        slider-color="#b10dbb"
-                        color="#ffffff"
-                >
-                    <v-tab class="v-tab-help-item"
-                            v-for="item in tabItems"
-                            :key="item.id"
+                <template v-slot:extension>
+                    <v-tabs
+                            v-model="tab"
+                            align-with-title
+                            color="#b10dbb"
+                            light
+                            left
+                            background-color="#ffffff"
                     >
-                        {{item.title}}
-                    </v-tab>
-                </v-tabs>
-            </template>
-        </v-toolbar>
-    </v-card>
+                        <v-tabs-slider color="#b10dbb"></v-tabs-slider>
+
+                        <v-tab class="v-tab-help-item" v-for="item in tabItems" :key="item" :to="item.route" >
+                            {{ item.title }}
+                        </v-tab>
+                    </v-tabs>
+                </template>
+            </v-toolbar>
+
+            <v-tabs-items v-model="tab">
+                    <v-tab-item
+                      v-for="item in tabItems"
+                      :key="item"
+                      :to="{path:item.route}"
+                    >
+                    </v-tab-item>
+            </v-tabs-items>
+        </v-card>
+        <v-container fluid fill-heigh>
+            <router-view></router-view>
+        </v-container>
+
     </v-app>
 </template>
 
@@ -64,6 +70,11 @@
                         route:'/privacy',
                         id:'3',
                     },
+                    {
+                        title:'ثبت شکایات',
+                        route:'/complainForm',
+                        id:'3',
+                    },
 
                 ]
             }
@@ -71,9 +82,16 @@
         methods: {
             routeView(item){
                 this.$router.push(item.route);
+            },
+            firstRouter(){
+                this.$router.push("/help");
             }
 
         },
+        created:{
+
+
+        }
     }
 </script>
 
@@ -88,7 +106,7 @@
         letter-spacing: 0.28px;
         text-align: right;
         color: #4221a2;
-        padding-right: 5px;
+        padding-right: 25px;
         padding-top: 3px;
     }
     .Oval {

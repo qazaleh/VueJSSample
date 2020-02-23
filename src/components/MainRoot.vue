@@ -12,12 +12,12 @@
         border-radius: 18px!important;">
                         <v-card class="transparent" flat width="85%" height="fill-height" style="border-radius: 0px !important;">
 <!--                            <router-view class="view two" name="a"></router-view>-->
-                            <router-view class="main"/>
+                            <router-view/>
                         </v-card>
                     </v-row>
                 </v-col>
                 <v-col
-                        :class="{'mt-n12': $vuetify.breakpoint.mdAndUp,} "
+                        :class="{'mt-n12': $vuetify.breakpoint.mdAndUp,}"
                         class="white"
                        cols="12" md="3">
                     <v-row justify="center" align-content="center">

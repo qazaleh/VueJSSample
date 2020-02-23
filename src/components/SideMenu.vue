@@ -105,7 +105,7 @@
                     {
                         icon:'mdi-alert-circle-outline',
                         text:'راهنمای پنل',
-                        // route:'/panelHelp'
+                        route:'panelHelp'
                     },
                     // {
                     //     icon:'mdi-wallet-outline',
