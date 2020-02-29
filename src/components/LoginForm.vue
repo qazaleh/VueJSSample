@@ -52,7 +52,7 @@
         data(){
             return{
                 mobileNumber: '',
-                maxInput: 11,
+                maxInput: 10,
                 inputRules: [
                     v => !!v || 'پر کردن این آیتم اجباری می‌باشد',
                     v => v.length <11  || 'شماره موبایل شامل ۱۱ کاراکتر است'
@@ -60,8 +60,39 @@
 
             }
         },
+        mounted () {
+            if(localStorage.mobile){
+                this.mobileNumber = localStorage.mobile;
+            }
+        },
+        watch: {
+            name(newMob) {
+                localStorage.userMobile = newMob;
+            }
+        },
         methods: {
-            login () {
+
+            login: function () {
+
+                localStorage.mobile = this.mobileNumber;
+                this.routeToNext();
+                // this.$http.post('http://somehost/user/login', {
+                //     password: this.password,
+                //     email: this.email
+                // }).then(function (response) {
+                //     if (response.status === 200 && 'token' in response.body) {
+                //         this.$session.start()
+                //         this.$session.set('jwt', response.body.token)
+                //         this.http.headers.common['Authorization'] = 'Bearer ' + response.body.token
+                //         this.routeToNext();
+                //         // this.$router.push('/panel/search')
+                //     }
+                // }, function () {
+                // //   error
+                // })
+            },
+
+            routeToNext () {
 
                 this.$router.push('/otp')
 
@@ -105,7 +136,7 @@
     }
 
     .v-textField-mobile {
-        font-size: 8px;
+        font-size: 16px;
         font-family: 'IRANSansMobile(FaNum)';
         text-align: left;
         color: #b10dbb;

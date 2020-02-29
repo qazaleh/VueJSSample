@@ -125,7 +125,13 @@ const routers =[
 ]
 
 const router = new  VueRouter({mode:'history',routes:routers})
-router.push('/login')
+if(localStorage.token != null && localStorage.token != '') {
+    router.push(router.name)
+    // router.push('/dashboard')
+}else {
+    router.push('/login')
+}
+
 
 new Vue({
   vuetify,

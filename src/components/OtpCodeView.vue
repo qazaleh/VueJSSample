@@ -68,6 +68,7 @@
                 otpCode: '',
                 countDown : 10,
                 maxInput: 4,
+                userSession:'',
 
                 inputRules: [
                     v => !!v || 'پر کردن این آیتم اجباری می‌باشد',
@@ -96,6 +97,7 @@
             },
             showDashboard(){
                 // this.$router.push({ name: '/dashboard', params: { userId: '123' } })
+                localStorage.token = '123456789'
                 this.$router.push('/dashboard')
             }
             },
@@ -103,13 +105,18 @@
             value() {
                 this.$emit('pressed', this.value);
             },
-            selfValue() {
-                this.value = this.selfValue;
-            },
+            name(newToken) {
+                localStorage.userSession = newToken;
+            }
             },
         created() {
             this.countDownTimer()
             },
+        mounted () {
+            if(localStorage.token){
+                this.userSession = localStorage.token;
+            }
+        },
 
     }
 </script>

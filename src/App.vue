@@ -31,8 +31,10 @@ import PanelHelp from "@/components/PanelHelp";
 export default {
     name: 'App',
     el: '#app',
+
     mounted () {
       this.$vuetify.rtl = true;
+
     },
     components: {
         PanelHelp,
@@ -43,12 +45,11 @@ export default {
 
     },
 
-    method:{
+    watch: {
 
     },
 
     data: () => ({
-
     }),
   };
 </script>

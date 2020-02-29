@@ -32,7 +32,8 @@
                         </v-card>
                     </v-row>
                     <v-row justify="center" align-content="center pt-8"  >
-                        <user-time-line v-bind:complete-register="true" user-state="registered"></user-time-line>
+                        <UserWorkFlow></UserWorkFlow>
+<!--                        <user-time-line v-bind:complete-register="true" user-state="registered"></user-time-line>-->
                     </v-row>
                 </v-col>
             </v-row>
@@ -44,11 +45,13 @@
     import SideMenu from "@/components/SideMenu";
     import HomeToolbar from "@/components/HomeToolbar";
     import UserInformationHome from "@/components/UserInformationHome";
-    import UserTimeLine from "@/components/UserTimeLine";
+    import UserWorkFlow from "@/components/UserWorkFlow";
+    // import UserTimeLine from "@/components/UserTimeLine";
     export default {
         name: "MainRoot",
         components: {
-            UserTimeLine,
+            UserWorkFlow,
+            // UserTimeLine,
             UserInformationHome,
             HomeToolbar,
             SideMenu

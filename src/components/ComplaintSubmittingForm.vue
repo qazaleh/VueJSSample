@@ -1,30 +1,39 @@
 <template>
-    <v-container fluid fill-height style="padding-top: 0px">
+    <v-container fluid fill-height style="padding-top: 0px; background-color: white" >
         <v-row style="padding-top: 0px" justify="end">
             <v-col cols="1"
                    class="#fafbfc"
             >
             </v-col>
-            <v-col cols="8" class="#fafbfc">
+            <v-col cols="11" class="#fafbfc">
                 <h1 class="h1-rule-header">ثبت شکایات</h1>
 
                 <p class="p-description">اگر پیشنهاد، انتقاد و یا شکایتی در جهت بهبود خدمات آتی‌پی دارید، با ما در میان گذارید. با سپاس</p>
+                    <v-row justify="center">
+                        <v-col cols="6">
+                            <div class="div-textField-label">نام و نام‌خانوادگی</div>
+                            <v-text-field class="v-textField-form-complain" background-color="#f4f5f7"  outlined filled  v-model.number="fullName"/>
 
-                    <div class="div-textField-label">نام و نام‌خانوادگی</div>
-                    <v-text-field class="v-textField-form-complain "  dense v-model.number="fullName"/>
+                            <div class="div-textField-label">ایمیل</div>
+                            <v-text-field class="v-textField-form-complain"  background-color="#f4f5f7"  outlined filled  v-model.number="email"/>
 
-                    <div class="div-textField-label">ایمیل</div>
-                    <v-text-field class="v-textField-form-complain "  dense v-model.number="email"/>
+                            <div class="div-textField-label">متن</div>
+                            <v-textarea
+                                    class="v-textarea-complain"
+                                    filled
+                                    v-model="text"
+                                    style="width: 350px!important;"
+                                    outlined
+                            ></v-textarea>
+                        </v-col>
+                        <v-col cols="6">
+                            <img class="img-shape" src="@/assets/shape.png"/>
+                        </v-col>
+                    </v-row>
 
-                    <div class="div-textField-label">متن</div>
-                    <v-text-field class="v-textField-form-complain "  dense v-model.number="text"/>
 
             </v-col>
-            <v-col cols="3">
 
-                    <div class="chevron" />
-                    <div class="div-oval-shape2" />
-            </v-col>
         </v-row>
     </v-container>
 </template>
@@ -102,60 +111,35 @@
         padding-bottom: 9px;
 
     }
+
     .v-textField-form-complain {
-        font-size: 8px;
         font-family: 'IRANSansMobile(FaNum)';
-        text-align: left;
-        color: rgba(45, 40, 48, 0.78);
-        padding-bottom: 40px;
-        padding-right: 80px;
-        padding-left: 80px;
+        font-size: 16px;
+        text-align: right;
         border-radius: 8px;
         background-color: #f4f5f7;
-        width: 350px;
+        width: 350px!important;
         height: 45px;
+        border-style: none;
+    }
+    /*.v-textField-form-complain>.v-input__control>.v-input__slot:before {*/
+    /*    border-style: none;*/
+    /*}*/
+
+    v-textarea-complain {
+        font-family: 'IRANSansMobile(FaNum)';
+        font-size: 16px;
+        text-align: right;
+        color: rgba(45, 40, 48, 0.78);
+        border-radius: 8px;
+        background-color: #f4f5f7;
+        width: 350px!important;
+        height: 135px!important;
     }
 
-    .div-oval-shape1 {
-        width: 427px;
-        height: 358px;
-        opacity: 0.08;
-        border-radius: 50% !important;
-        background-image: linear-gradient(218deg, #e005c5 144%, #27269c -12%);
-    }
-    .div-oval-shape2{
-        width: 363px;
-        height: 227px;
-        opacity: 0.13;
-        border-radius: 50% !important;
-        background-image: linear-gradient(226deg, #e005c5 137%, #27269c -9%);
-    }
-    .chevron {
-                position: relative;
-                text-align: center;
-                padding: 12px;
-                margin-bottom: 6px;
-                height: 60px;
-                width: 200px;
-            }
-    .chevron:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 51%;
-        background: red;
-        transform: skew(0deg, 6deg);
-    }
-    .chevron:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 50%;
-        background: red;
-        transform: skew(0deg, -6deg);
+    .img-shape {
+        width: 590px;
+        height: 458px;
+        background-color: transparent;
     }
 </style>
