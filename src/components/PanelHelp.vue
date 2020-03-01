@@ -48,13 +48,13 @@
         name: "PanelHelp",
         data(){
             return{
-                model: 'tab-1',
+                model: 'tab',
                 tabItems:[
-                    {
-                        title:'راهنمای استفاده',
-                        route:'/help',
-                        id:'0',
-                    },
+                    // {
+                    //     title:'راهنمای استفاده',
+                    //     route:'/help',
+                    //     id:'0',
+                    // },
                     {
                         title:'سوالات متداول',
                         route:'/commonQuestions',
@@ -84,13 +84,14 @@
                 this.$router.push(item.route);
             },
             firstRouter(){
-                this.$router.push("/help");
+                 this.$router.push("/commonQuestions");
             }
 
         },
-        created:{
-
-
+        created() {
+        },
+        mounted(){
+            this.firstRouter();
         }
     }
 </script>
