@@ -1,12 +1,10 @@
 <template>
-    <v-container fluid fill-height>
-
-    </v-container>
+    $END$
 </template>
 
 <script>
     export default {
-        name: "GatewayAddForm"
+        name: "PanelMainView"
     }
 </script>
 
