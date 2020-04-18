@@ -16,7 +16,7 @@
                     <p class="p-message">برای ورود یا عضویت شماره موبایل خود را وارد کنید.</p>
                 </v-row>
                     <v-form class="px-3" ref="form">
-                        <v-text-field class="v-textField-mobile "  dense v-model.number="mobileNumber" label="شماره موبایل"  @keypress="onlyNumber" type="text" :maxlength="maxInput" :rules="inputRules"/>
+                        <v-text-field class="v-textField-mobile "  dense v-model.number="mobileInput" label="شماره موبایل"  @keypress="onlyNumber" type="text" :maxlength="maxInput" :rules="inputRules"/>
                         <v-btn dark  class="btn-grad" elevation="0" @click="login">ارسال پیامک</v-btn>
                     </v-form>
             </v-card>
@@ -45,24 +45,34 @@
 
 
 </template>
-
 <script>
+    import RequestWrapper from "./RequestWrapper";
+
     export default {
         name: "LoginForm",
         data(){
             return{
-                mobileNumber: '',
-                maxInput: 10,
+                mobileInput: '',
+                maxInput: 11,
                 inputRules: [
                     v => !!v || 'پر کردن این آیتم اجباری می‌باشد',
-                    v => v.length <11  || 'شماره موبایل شامل ۱۱ کاراکتر است'
+                    v => v.length <12  || 'شماره موبایل شامل ۱۱ کاراکتر است'
                 ],
+                jsonData:{
+                    data:{
+                        // mobileNumber : String,
+                        // cardNo:String,
+                        // iban:String,
+                        // expDate:String
+                        page : 1
+                    }
+                }
 
             }
         },
         mounted () {
             if(localStorage.mobile){
-                this.mobileNumber = localStorage.mobile;
+                this.mobileInput = localStorage.mobile;
             }
         },
         watch: {
@@ -74,22 +84,26 @@
 
             login: function () {
 
-                localStorage.mobile = this.mobileNumber;
-                this.routeToNext();
-                // this.$http.post('http://somehost/user/login', {
-                //     password: this.password,
-                //     email: this.email
-                // }).then(function (response) {
-                //     if (response.status === 200 && 'token' in response.body) {
-                //         this.$session.start()
-                //         this.$session.set('jwt', response.body.token)
-                //         this.http.headers.common['Authorization'] = 'Bearer ' + response.body.token
-                //         this.routeToNext();
-                //         // this.$router.push('/panel/search')
-                //     }
-                // }, function () {
-                // //   error
-                // })
+                    console.log('Began Login');
+                    const apiService = new RequestWrapper();
+                //     this.jsonData.data.mobileNuumber = '09122391618';
+                // this.jsonData.data.expDate = '9813';
+                // this.jsonData.data.cardNo = '783545646587878';
+                // this.jsonData.data.iban = '547587878453453454';
+
+                // eslint-disable-next-line no-unused-vars
+                let jsonString= JSON.stringify(this.jsonData);
+
+                console.log('request json before sending request',null);
+                    apiService.sendPostRequest("https://www.atipay.net/__accountlist__.php?page=1",this.jsonData)
+                        .then((response) => {
+                            console.log('test request wrapper for login');
+                            console.log(response);
+                            // localStorage.mobile = this.mobileNumber;
+                            this.routeToNext();
+                        });
+
+
             },
 
             routeToNext () {
@@ -109,7 +123,6 @@
 
     }
 </script>
-
 
 <style scoped>
     .container{
@@ -136,8 +149,8 @@
     }
 
     .v-textField-mobile {
-        font-size: 16px;
         font-family: 'IRANSansMobile(FaNum)';
+        font-size: 16px;
         text-align: left;
         color: #b10dbb;
         padding-bottom: 40px;

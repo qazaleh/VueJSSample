@@ -1,34 +1,26 @@
 <template>
     <v-dialog class="v-dialog-gateway-sett" v-model="show" persistent max-width="313">
             <v-card class="v-card-gateway-sett" flat light elevation="0">
-                    <v-row class="v-row-right">
-                        <v-btn small icon elevation="0" @click.stop="show=false">
-                            <v-icon size="15" color="#42526e">mdi-close</v-icon>
+                        <v-btn style="margin-top: 12px;"  icon elevation="0" @click.stop="show=false">
+                            <v-icon size="15" color="#42526e" >mdi-close</v-icon>
                         </v-btn>
-                    </v-row>
-                    <v-row class="v-row-right">
                         <h1 class="h1-dialog-header">تنظیمات درگاه</h1>
-                    </v-row>
-                     <v-row class="v-row-right">
-                        <v-col>
-                            <p class="p-switch-labels">فعالسازی درگاه</p>
-                        </v-col>
-                         <v-col>
-                             <v-switch
-                                     class="v-switch-small"
-                                     v-model=card.activationSwitch inset
-                                     color="#b10dbb"
-                                     hide-details
-                                     light
-                             ></v-switch>
-                         </v-col>
-                     </v-row>
 
-                <v-row class="v-row-right" style="padding-top: 10px">
-                    <v-col>
-                        <p class="p-switch-labels">فعال سازی درخواست تسویه</p>
+                <v-row class="dark--text">
+                    <v-col cols="9"><p class="p-switch-labels">فعالسازی درگاه</p></v-col>
+                    <v-col cols="3">
+                        <v-switch
+                                class="v-switch-small"
+                                v-model=card.activationSwitch inset
+                                color="#b10dbb"
+                                hide-details
+                                light
+                        ></v-switch>
                     </v-col>
-                    <v-col>
+                </v-row>
+                <v-row class="dark--text">
+                    <v-col cols="9"><p class="p-switch-labels">فعال سازی درخواست تسویه</p></v-col>
+                    <v-col cols="3">
                         <v-switch
                                 class="v-switch-small"
                                 v-model=card.settlementSwitch inset
@@ -96,13 +88,13 @@
     }
 
     .v-dialog-gateway-sett{
-        /*max-width: 313px!important;*/
+        max-width: 313px!important;
         max-height: 203px!important;
         border-radius: 12px!important;
 
     }
     .v-card-gateway-sett{
-        /*width: 313px!important;*/
+        width: 313px!important;
         height: 203px!important;
         border-radius: 12px!important;
         background-color: #f0f3f8;
@@ -117,6 +109,7 @@
         letter-spacing: normal;
         text-align: right;
         color: #253858;
+        padding: 12px;
     }
     .p-switch-labels{
         font-family: 'IRANSansMobile(FaNum)';
@@ -128,13 +121,34 @@
         letter-spacing: normal;
         text-align: right;
         color: #253858;
+        padding-right: 20px;
     }
     .v-switch-small {
         transform-origin: right;
         padding-right: 8px;
         transform: rotateY(-180deg) scale(0.775);
-        margin-right: 70px;
-        margin-left: -50px;
+        margin-right: 36px;
+        margin-left: -30px;
+        margin-top: -8px;
 
     }
+
+    .responsive {
+        padding: 0 6px;
+        float: left;
+        width: 24.99999%;
+    }
+    @media only screen and (max-width: 700px) {
+        .responsive {
+            width: 49.99999%;
+            margin: 6px 0;
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .responsive {
+            width: 100%;
+        }
+    }
+
 </style>

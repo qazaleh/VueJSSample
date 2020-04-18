@@ -1,8 +1,9 @@
 <template>
     <v-app>
-            <side-menu/>
-        <v-container fluid  class="#f4f5f7">
-            <v-row justify="end" no-gutters class="transparent">
+        <v-content
+                  class="green  "
+        >
+            <v-row justify="spaceAround"  no-gutters class="transparent">
                 <v-col class="transparent"  cols="12" md="9">
                     <v-row style="  align-content: center;
         alignment: center;
@@ -10,7 +11,7 @@
         justify-content: center;
         justify-items: center;
         border-radius: 18px!important;">
-                        <v-card class="transparent" flat width="85%" height="fill-height" style="border-radius: 0px !important;">
+                        <v-card class="transparent" flat width="95%" height="fill-height" style="border-radius: 0px !important;">
 <!--                            <router-view class="view two" name="a"></router-view>-->
                             <router-view/>
                         </v-card>
@@ -37,12 +38,11 @@
                     </v-row>
                 </v-col>
             </v-row>
-        </v-container>
+        </v-content>
     </v-app>
 </template>
 
 <script>
-    import SideMenu from "@/components/SideMenu";
     import HomeToolbar from "@/components/HomeToolbar";
     import UserInformationHome from "@/components/UserInformationHome";
     import UserWorkFlow from "@/components/UserWorkFlow";
@@ -54,7 +54,6 @@
             // UserTimeLine,
             UserInformationHome,
             HomeToolbar,
-            SideMenu
         },
         data () {
             return {

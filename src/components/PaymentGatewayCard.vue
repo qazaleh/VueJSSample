@@ -70,8 +70,8 @@
                         <v-btn elevation="0" icon v-on="on" :disabled="buttonActionEnable()" @click.stop="showScheduleForm=true">
                             <v-icon size="20" color="#253858">mdi-hexagon-multiple-outline</v-icon>
                         </v-btn>
-                        <gateway-setting-form :visible="showScheduleForm" :card="this.card" @close="showScheduleForm=false" />
                     </template>
+                    <gateway-setting-form :visible="showScheduleForm" :card="this.card" @close="showScheduleForm=false" />
                     <span class="span-gateway-tooltip">تنظیمات درگاه</span>
                 </v-tooltip>
             </v-col>

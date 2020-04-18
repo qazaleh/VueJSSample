@@ -25,6 +25,10 @@
         name: "PanelCommonQuestion",
         data(){
             return{
+                window: {
+                    width: 0,
+                    height: 0
+                },
                 commonQuestionLists :[
                     {
                         question:'چطور موجودی حسابم رو به حساب بانکی منتقل کنم؟',
@@ -55,7 +59,6 @@
                         id:'6'
                     }
                 ]
-
             }
         },
         created() {
@@ -71,14 +74,6 @@
                 this.window.height = window.innerHeight;
             }
         },
-        data(){
-            return{
-                window: {
-                    width: 0,
-                    height: 0
-                },
-            }
-            }
     }
 </script>
 

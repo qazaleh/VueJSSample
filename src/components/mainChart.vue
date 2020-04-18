@@ -1,90 +1,71 @@
 <template>
-    <div id="HomeBaseChart">
-        <v-card-title align="right" style="font-size: medium; font-family: 'IRANSansMobile(FaNum)'; color: black;">
-            نمودار تراکنش های ۳۰ روز اخیر
-        </v-card-title>
-        <home-chart-tab/>
-        <v-card
-                class="text-center transparent v-card--material-chart"
-                light
-                flat
-        >
-            <v-sparkline
-                    :value="value"
-                    :gradient="gradient"
-                    line-width="1px"
-                    smooth
-                    auto-draw
-                    :show-labels="true"
-                    :label-size="2"
-                    style="font-family: 'IRANSansMobile(FaNum)'; font-size: x-small"
-            >
-                <template
-                        slot="label"
-                        slot-scope="item"
-                >
-                    ${{ item.value }}
-                </template>
-            </v-sparkline>
-        </v-card>
 
+    <v-container fluid  class="v-container-chart-base">
+<!--        <v-row class="v-row-right-content transparent" style="margin-right: 10px">-->
+            <v-card-title class="v-card-title-header-chart ">نمودار تراکش‌های ۳۰ روز اخیر</v-card-title>
+<!--        </v-row>-->
 
-    </div>
+            <activity-graph/>
 
-    <!--        <chartist-->
-    <!--                class="v-card&#45;&#45;material-chart"-->
-    <!--                :data="dailySalesChart.data"-->
-    <!--                :options="dailySalesChart.options"-->
-    <!--                type="Line"-->
-    <!--                color="info"-->
-    <!--                style="padding-bottom: 50px ; color: grey"-->
-    <!--        ></chartist>-->
+        <!--        <v-sparkline-->
+<!--                :value="value"-->
+<!--                :gradient="gradient"-->
+<!--                line-width="1px"-->
+<!--                smooth-->
+<!--                auto-draw-->
+<!--                :show-labels="true"-->
+<!--                :label-size="2"-->
+<!--                style="font-family: 'IRANSansMobile(FaNum)'; font-size: x-small"-->
+<!--        >-->
+<!--            <template-->
+<!--                    slot="label"-->
+<!--                    slot-scope="item"-->
+<!--            >-->
+<!--                ${{ item.value }}-->
+<!--            </template>-->
+<!--        </v-sparkline>-->
 
-
+    </v-container>
 
 </template>
 
 <script>
 
-    // import HomeChartTab from "@/components/HomeChartTab";
+    // import {  Line } from 'vue-chartjs'
+
+    import ActivityGraph from "./ActivityGraph";
     const gradients = [
         ['#7e3ebb', '#8b45bb', '#af72bb'],
     ]
     export default {
 
         name: "mainChart",
-
+        components: {ActivityGraph},
         data () {
             return {
-                value: [0, 2, 5, 9, 5, 10, 3, 5, -4, -10, 1, 8, 2, 9, 0],
-                gradient:gradients[0],
+
+
+                value: [0, 2, 5, 9, 5, 10, 3, 5, 4, 10, 1, 8, 2, 9, 0],
+                gradient: gradients[0],
                 gradients,
-                dailySalesChart: {
-                    data: {
-                        labels: [1, 2, 3, 4, 5, 6, 7, 8,0,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
-                        series: [
-                            [1000,120,350,134,23,3444,643,234,643,2345,22433,545,23,5466,2000,1000,120,350,134,23,3444,643,234,643,2345,22433,545,23,5466,2000,],
-                        ]
-                    },
-                    options: {
-                        axisX: {
-                            showGrid: false
-                        },
-                        low: 0,
-                        high: 10000,
-
-                    },
-
-
-
-                }
-
             }
         },
 
-        components: {
-            // HomeChartTab
-        },
+        // extends: Line,
+
+        mounted () {
+            // this.renderChart({
+            //     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            //     dataSets: [
+            //         {
+            //             label: 'Data One',
+            //             backgroundColor: '#f87979',
+            //             data: [40, 39, 10, 40, 39, 80, 40]
+            //         }
+            //     ]
+            // }, {responsive: true, maintainAspectRatio: false})
+        }
+
     }
 </script>
 
@@ -92,6 +73,41 @@
 
 </style>
 <style lang="scss">
+
+    .v-row-left-content {
+
+        justify-content: flex-end;
+
+    }
+    .v-row-right-content {
+
+        justify-content: flex-start;
+
+    }
+    .v-card-title-header-chart {
+        font-family: 'IRANSansMobile(FaNum)';
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #172b4d;
+    }
+    .v-container-chart-base {
+        height: 344px;
+        border-radius: 17px!important;
+        box-shadow: 0 4px 13px 0 rgba(117, 117, 117, 0.09);
+        background-color: #ffffff;
+    }
+    .v-card-chart-base {
+        height: 344px;
+        border-radius: 17px;
+        box-shadow: 0 4px 13px 0 rgba(117, 117, 117, 0.09);
+        background-color: #ffffff;
+    }
+
     .v-card--material-chart {
         .v-card--material__header {
             .ct-label {
@@ -116,6 +132,18 @@
             }
 
         }
+    }
+
+    .GChart.transactions {
+        font-family: 'IRANSansMobile(FaNum)';
+        font-size: 11px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.27;
+        letter-spacing: normal;
+        text-align: center;
+        color: #97a0af;
     }
 </style>
 <style>

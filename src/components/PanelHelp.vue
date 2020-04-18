@@ -57,24 +57,24 @@
                     // },
                     {
                         title:'سوالات متداول',
-                        route:'/commonQuestions',
+                        route:'panelHelp/commonQuestions',
                         id:'1',
                     },
                     {
                         title:'قوانین و مقررات',
-                        route:'/rules',
+                        route:'panelHelp/rules',
                         id:'2',
                     },
                     {
                         title:'حریم شخصی',
-                        route:'/privacy',
+                        route:'panelHelp/privacy',
                         id:'3',
                     },
-                    {
-                        title:'ثبت شکایات',
-                        route:'/complainForm',
-                        id:'3',
-                    },
+                    // {
+                    //     title:'ثبت شکایات',
+                    //     route:'panelHelp',
+                    //     id:'3',
+                    // },
 
                 ]
             }
@@ -84,7 +84,7 @@
                 this.$router.push(item.route);
             },
             firstRouter(){
-                 this.$router.push("/commonQuestions");
+                 this.$router.push("panelHelp/commonQuestions                                                   ");
             }
 
         },

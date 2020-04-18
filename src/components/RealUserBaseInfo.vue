@@ -79,7 +79,7 @@
             </v-col>
         </v-row>
         <v-row class="v-row-left-content">
-            <v-btn dark  class="btn-grad" elevation="0" >ذخیره و ارسال</v-btn>
+            <v-btn dark  class="btn-grad" elevation="0" @click="saveUserData">ذخیره و ارسال</v-btn>
         </v-row>
     </div>
 </template>
@@ -116,6 +116,9 @@
             }
         },
         methods: {
+            saveUserData(){
+                localStorage.userProfileComplete = true;
+            },
             onInput(val) {
                 this.steps = parseInt(val)
             },

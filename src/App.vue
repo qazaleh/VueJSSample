@@ -1,19 +1,14 @@
 <template>
 
-
   <v-app>
-
-<!--      <MainRoot v-if='this.$route.name === "dashboard" || this.$route.name === "gateway"'/>-->
-<!--      <login-form v-if='this.$route.name === "login"'/>-->
-<!--      <otp-code-view v-if='this.$route.name === "otp"'/>-->
-
+      <div>
+          <h1 style="text-align: center">{{this.$route.name}}</h1>
+      </div>
       <login-form v-if='this.$route.name === "login"'/>
       <otp-code-view v-else-if='this.$route.name === "otp"'/>
-      <PanelHelp v-else-if='this.$route.name === "panelHelp"'/>
-<!--      <MainRoot v-else/>-->
-
-      <router-view  v-else></router-view>
-
+      <PanelHelp v-else-if='this.$route.name.includes("PanelHelp")'/>
+      <RightMenu  v-else></RightMenu>
+<!--      <router-view  v-else></router-view>-->
   </v-app>
 
 </template>
@@ -26,31 +21,53 @@
 // import MainRoot from "@/components/MainRoot";
 import LoginForm from "@/components/LoginForm";
 import OtpCodeView from "@/components/OtpCodeView";
+import RightMenu from "./components/NavigationSideMenu/RightMenu";
 import PanelHelp from "@/components/PanelHelp";
-// import PanelHelp from "@/components/PanelHelp";
 export default {
     name: 'App',
     el: '#app',
-
+    drawer: true,
+    clipped: false,
     mounted () {
       this.$vuetify.rtl = true;
 
     },
+    data () {
+        return {
+            miniVariant: false,
+            links: [
+                {
+                    icon:'mdi-home-outline',
+                    text:'پیشخوان',
+                },
+                {
+                    icon:'mdi-id-card',
+                    text:'درگاه‌های پرداخت',
+                    route:'/gateway'
+                },
+                {
+                    icon:'mdi-alert-circle-outline',
+                    text:'راهنمای پنل',
+                },
+            ]
+        }
+    },
     components: {
+        RightMenu,
         PanelHelp,
-        // PanelHelp,
         OtpCodeView,
         // MainRoot,
         LoginForm,
 
+    },
+    created() {
+      localStorage.openDrawer = false;
     },
 
     watch: {
 
     },
 
-    data: () => ({
-    }),
   };
 </script>
 <style scoped>

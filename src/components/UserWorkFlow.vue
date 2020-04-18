@@ -36,19 +36,28 @@
                     color:"#253858"
                 },
                 {
-                    complete: false,
-                    current:true,
+                    complete: localStorage.userProfileComplete,
+                    current:false,
                     icon: 'mdi-account-box-outline',
                     title: 'تکمیل حساب کاربری',
                     year:'۲۸ دی  ۹۸ \n' +
                         '۱۰:۳۰ ب.ظ',
-                    color:"purple"
+                    color:"#97a0af"
+                },
+                {
+                    complete: false,
+                    current:true,
+                    icon: 'mdi-card-text-outline',
+                    title: 'تایید حساب بانکی',
+                    year:'۲۸ دی  ۹۸ \n' +
+                        '۱۰:۳۰ ب.ظ',
+                    color: "purple"
                 },
                 {
                     complete: false,
                     current:false,
-                    icon: 'mdi-card-text-outline',
-                    title: 'تایید حساب بانکی',
+                    icon: 'mdi-briefcase-outline',
+                    title: 'اطلاعات ؟',
                     year:'۲۸ دی  ۹۸ \n' +
                         '۱۰:۳۰ ب.ظ',
                     color: "#97a0af"
@@ -56,8 +65,8 @@
                 {
                     complete: false,
                     current:false,
-                    icon: 'mdi-briefcase-outline',
-                    title: 'اطلاعات ؟',
+                    icon: 'mdi-account-check',
+                    title: 'شما پذیرنده شدید!',
                     year:'۲۸ دی  ۹۸ \n' +
                         '۱۰:۳۰ ب.ظ',
                     color: "#97a0af"
@@ -226,7 +235,7 @@
         letter-spacing: normal;
         text-align: right;
         color: #97a0af;
-        padding-right: 20px;
+        padding-right: 15px;
     }
 
     .v-icon-workflow {

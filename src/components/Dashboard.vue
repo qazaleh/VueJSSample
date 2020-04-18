@@ -1,21 +1,28 @@
 <template>
     <v-container fluid fill-height class="v-container-grey-shadow">
-        <v-row style="align-content: center;alignment: center;align-items: center;justify-content: center;justify-items: center;">
-            <profile-view/>
-        </v-row>
+            <PanelMainView v-if="this.isUserRegisterCompleted()"/>
+             <profile-view v-else/>
+
     </v-container>
 </template>
 
 <script>
-    // import MainChart from "@/components/mainChart";
     import ProfileView from "@/components/ProfileView";
+    import PanelMainView from "@/components/PanelMainView";
     export default {
         name: "Dashboard",
         components: {
+            // PanelMainView,
+            PanelMainView,
             ProfileView
-
+        },
+        methods: {
+            isUserRegisterCompleted: function () {
+                    return  localStorage.userProfileComplete;
+            },
         }
     }
+
 </script>
 
 <style scoped>
