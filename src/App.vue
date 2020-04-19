@@ -5,7 +5,7 @@
           <h1 style="text-align: center">{{this.$route.name}}</h1>
       </div>
       <login-form v-if='this.$route.name === "login"'/>
-      <otp-code-view v-else-if='this.$route.name === "otp"'/>
+      <OtpView v-else-if='this.$route.name === "otp"'/>
       <PanelHelp v-else-if='this.$route.name.includes("PanelHelp")'/>
       <RightMenu  v-else></RightMenu>
 <!--      <router-view  v-else></router-view>-->
@@ -20,9 +20,10 @@
 
 // import MainRoot from "@/components/MainRoot";
 import LoginForm from "@/components/LoginForm";
-import OtpCodeView from "@/components/OtpCodeView";
+// import OtpCodeView from "@/components/OtpCodeView";
 import RightMenu from "./components/NavigationSideMenu/RightMenu";
 import PanelHelp from "@/components/PanelHelp";
+import OtpView from "./components/Otp/OtpView";
 export default {
     name: 'App',
     el: '#app',
@@ -53,9 +54,10 @@ export default {
         }
     },
     components: {
+        OtpView,
         RightMenu,
         PanelHelp,
-        OtpCodeView,
+        // OtpCodeView,
         // MainRoot,
         LoginForm,
 
