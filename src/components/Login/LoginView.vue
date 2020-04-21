@@ -1,55 +1,60 @@
 <template>
-    <v-container fluid fill-height>
-        <v-row class="v-row-center">
-            <v-card class="transparent" flat light>
+    <v-container fluid fill-height >
+        <v-container  >
+            <v-row class="v-row-center">
                 <v-card class="v-card-main-rounded" light  flat>
+                    <v-row  class="pt-8 v-row-center">
+                        <div class="Oval" ></div>
+                        <div class="Oval" style="margin-right: -20px;" ></div>
+                        <h1  class="h1-headerName">آتی پی</h1>
+                    </v-row>
+                    <v-row class="v-row-center" style="padding-top: 32px;">
+                        <p class="p-welcome">خوش آمدید!</p>
+                    </v-row>
+                    <v-row class="v-row-center" style="padding-top: 9px;">
+                        <p class="p-message">برای ورود یا عضویت شماره موبایل خود را وارد کنید.</p>
+                    </v-row>
+                    <v-text-field class="v-textField-mobile
+                                             pr-lg-10 pr-xl-10 pr-md-10 pr-8 pr-8
+                                             pl-lg-10 pl-xl-10 pl-md-10 pl-8 pl-8"
+                                  dense v-model="mobileInput"
+                                  label="شماره موبایل"
+                                  type="text"
+                                  :maxlength="maxInput"
+                                  @keypress="onlyNumber"
+                                  :rules="inputRules"/>
 
-                <v-row  class="pt-8 v-row-center">
-                    <div class="Oval" ></div>
-                    <div class="Oval" style="margin-right: -20px;" ></div>
-                    <h1  class="h1-headerName">آتی پی</h1>
-                </v-row>
-                <v-row class="v-row-center" style="padding-top: 32px;">
-                    <p class="p-welcome">خوش آمدید!</p>
-                </v-row>
-                <v-row class="v-row-center" style="padding-top: 9px;">
-                    <p class="p-message">برای ورود یا عضویت شماره موبایل خود را وارد کنید.</p>
-                </v-row>
-                    <v-form class="px-3" ref="form">
-                        <v-text-field class="v-textField-mobile "  dense v-model.number="mobileInput" label="شماره موبایل"  @keypress="onlyNumber" type="text" :maxlength="maxInput" :rules="inputRules"/>
-                        <v-btn dark  class="btn-grad" elevation="0" :loading="this.loading" @click="login">ارسال پیامک</v-btn>
-                    </v-form>
-            </v-card>
-                <v-row  wrap class="v-row-center">
-                    <v-col md="4" sm="3">
-                        <v-btn class="btn-gray-login" text small>
-                            راهنمای وبسایت
-                        </v-btn>
-                    </v-col>
-                    <v-col md="4" sm="3">
-                        <v-btn class="btn-gray-login" text small>
-                            قوانین و مقررات
-                        </v-btn>
-                    </v-col>
-                    <v-col md="4" sm="3">
-                        <v-btn class="btn-gray-login" text small>
-                            حریم خصوصی
-                        </v-btn>
-                    </v-col>
-                </v-row>
-            </v-card>
-        </v-row>
+                    <v-btn dark  class="btn-grad" elevation="0" :loading="this.loading" @click="login">ارسال پیامک</v-btn>
+
+                    <v-row  wrap class="v-row-center">
+                        <v-col >
+                            <v-btn class="btn-gray-login" text x-small>
+                                راهنمای وبسایت
+                            </v-btn>
+                        </v-col>
+                        <v-col >
+                            <v-btn class="btn-gray-login" text x-small>
+                                قوانین و مقررات
+                            </v-btn>
+                        </v-col>
+                        <v-col >
+                            <v-btn class="btn-gray-login" text x-small>
+                                حریم خصوصی
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+
+                </v-card>
+            </v-row>
+        </v-container>
     </v-container>
-
-
-
-
 </template>
+
 <script>
-    import RequestWrapper from "./RequestWrapper";
+    import RequestWrapper from "../RequestWrapper";
 
     export default {
-        name: "LoginForm",
+        name: "LoginView",
         data(){
             return{
                 mobileInput: '',
@@ -86,9 +91,9 @@
 
             login: function () {
 
-                    console.log('Began Login');
-                    const apiService = new RequestWrapper();
-                    this.jsonData.data.mobileNumber = this.mobileInput;
+                console.log('Began Login');
+                const apiService = new RequestWrapper();
+                this.jsonData.data.mobileNumber = this.mobileInput;
                 // this.jsonData.data.expDate = '9813';
                 // this.jsonData.data.cardNo = '783545646587878';
                 // this.jsonData.data.iban = '547587878453453454';
@@ -97,19 +102,19 @@
                 let jsonString= JSON.stringify(this.jsonData);
 
                 this.loading = true
-                    apiService.sendPostRequest("https://www.atipay.net/__login__.php",this.jsonData)
-                        .then((response) => {
-                            this.loading = false;
+                apiService.sendPostRequest("https://www.atipay.net/__login__.php",this.jsonData)
+                    .then((response) => {
+                        this.loading = false;
 
-                            if(response["status"]["code"] == 0 && response["status"]["message"] == "Success") {
-                                localStorage.otpCode = response["data"]["otp"];
-                                this.routeToNext();
-                            }else {
-                                alert(response["status"]["message"]);
-                            }
-                        }).catch(function(error) {
-                        alert("خطای ارتباط با سرور" + "\n" + error.description);
-                    });
+                        if(response["status"]["code"] == 0 && response["status"]["message"] == "Success") {
+                            localStorage.otpCode = response["data"]["otp"];
+                            this.routeToNext();
+                        }else {
+                            alert(response["status"]["message"]);
+                        }
+                    }).catch(function(error) {
+                    alert("خطای ارتباط با سرور" + "\n" + error.description);
+                });
             },
             routeToNext () {
                 this.$router.push('/otp')
@@ -197,14 +202,25 @@
         height: 47px;
         font-family: 'IRANSansMobile(FaNum)';
         font-size: 13px
-
     }
-
+    @media (min-width: 300px) and (max-width: 650px) {
+        .btn-grad {
+            width: 95%;
+            max-width: 95%;
+            height: 37px;
+            flex-basis: 95%;
+        }
+    }
     .btn-gray-login{
         font-family: 'IRANSansMobile(FaNum)' ;
         font-size: 10px!important;
         color: #7a869a!important;
     }
-
-
+    @media (min-width: 300px) and (max-width: 750px) {
+        .btn-gray-login {
+            font-family: 'IRANSansMobile(FaNum)' ;
+            font-size: 8px!important;
+            color: #7a869a!important;
+        }
+    }
 </style>

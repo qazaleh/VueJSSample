@@ -57,17 +57,17 @@
                     // },
                     {
                         title:'سوالات متداول',
-                        route:'panelHelp/commonQuestions',
+                        route:'/commonQuestions',
                         id:'1',
                     },
                     {
                         title:'قوانین و مقررات',
-                        route:'panelHelp/rules',
+                        route:'/rules',
                         id:'2',
                     },
                     {
                         title:'حریم شخصی',
-                        route:'panelHelp/privacy',
+                        route:'/privacy',
                         id:'3',
                     },
                     // {
@@ -84,7 +84,7 @@
                 this.$router.push(item.route);
             },
             firstRouter(){
-                 this.$router.push("panelHelp/commonQuestions                                                   ");
+                 this.$router.push("/commonQuestions");
             }
 
         },

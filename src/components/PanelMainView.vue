@@ -1,7 +1,7 @@
 <template>
 
 
-    <v-container class="#f4f5f7" style="border-radius: 0px!important;">
+    <v-container class="" style="border-radius: 0px!important;">
                 <v-row class="v-row-right-content #f4f5f7" style="margin-right: 10px">
                     <v-card-title class="v-card-title-header">پیشخوان</v-card-title>
                 </v-row>
@@ -14,11 +14,16 @@
                         </last-transactions-view>
                     </v-col>
                     <v-col
-                            class="pink"
+                            class=""
                             cols="12" md="5">
-                        <v-card class=" pa-6 light-green">
 
-                        </v-card>
+                            <wallet-little-card></wallet-little-card>
+                            <wallet-little-card></wallet-little-card>
+                            <wallet-little-card></wallet-little-card>
+                            <wallet-little-card></wallet-little-card>
+                            <wallet-little-card></wallet-little-card>
+
+
                     </v-col>
                 </v-row>
 
@@ -30,15 +35,17 @@
     import LastTransactionsView from "./LastTransactionsView";
     // import axios from "axios";
     import RequestWrapper from "./RequestWrapper";
+    import WalletLittleCard from "./Wallet/WalletLittleCard";
 
 
 
     export default {
         name: "PanelMainView",
-        components: {LastTransactionsView, MainChart},
+        components: {WalletLittleCard, LastTransactionsView, MainChart},
         data(){
             return{
                 list:[],
+
                 totalPages : 0,
                 loadingTransaction : true,
             }
@@ -49,10 +56,31 @@
               const apiService = new RequestWrapper();
 
               apiService.sendGetRequest("https://www.atipay.net/__l__.php?page=1")
-              .then((json) => {
-                  console.log('transaction list done');
-                  console.log(json)
-              })
+              .then((response) => {
+                  if(response["status"]["code"] == 0 && response["status"]["message"] == "Success") {
+
+                      let arrayList = response['data']['list'];
+                      console.log("this is list",arrayList);
+                              for (let i = 0; i < arrayList.length; i++) {
+
+                                  let objectMoney =  {
+                                      date: arrayList[i]["date"],
+                                      title: arrayList[i]["title"],
+                                      description: arrayList[i]["desciption"],
+                                      status: arrayList[i]["status"],
+                                      func: arrayList[i]["func"],
+                                  }
+                                  this.list.push(objectMoney);
+                              }
+                              this.totalPages = arrayList.length;
+                              this.loadingTransaction = false;
+                  }else {
+                      // alert(response["status"]["message"]);
+                  }
+              }).catch(function(error) {
+                  console.log(error.description);
+                  // alert("خطای ارتباط با سرور" + "\n" + error.description);
+              });
               // apiService.getTransactions("https://www.atipay.net/__l__.php?page=1")
               // .then((resolveJson) => {
               //     console.log('test request wrapper ');
@@ -64,6 +92,7 @@
 
             this.getTransactions();
 
+            // $scrollview.onLastEntered = () => this.page++
             // axios.get("https://www.atipay.net/__l__.php?page=1")
             //
             //     .then(response => {
@@ -110,4 +139,12 @@
         text-align: right;
         color: #172b4d;
     }
+    .v-row-center{
+        align-content: center;
+        alignment: center;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+    }
+
 </style>

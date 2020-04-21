@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-content
-                  class="green  "
+                  class=""
         >
             <v-row justify="spaceAround"  no-gutters class="transparent">
                 <v-col class="transparent"  cols="12" md="9">

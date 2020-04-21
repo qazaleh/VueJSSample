@@ -8,6 +8,9 @@ const isHandlerEnabled = (config={}) => {
 const responseHandler = (response) => {
     console.log('start response handle');
     console.log(response);
+    console.log("*********",response.data);
+    console.log("&&&&&&&&&&",response.status);
+
     if(response.data["status"]["code"] === 0){
         return response
     }else {
@@ -51,9 +54,13 @@ export default class RequestWrapper {
             .then(function(response) {
                 console.log('done post request');
                 console.log(response)
+                return response.data;
             })
             .catch(function(error) {
                 console.log(error);
+                return error;
             });
     }
+
 }
+

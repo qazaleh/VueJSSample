@@ -5,6 +5,10 @@ import VueRouter from "vue-router";
 import Vuetify from "vuetify";
 import LoginForm from "@/components/LoginForm";
 import OtpCodeView from "@/components/OtpCodeView";
+import VueAxios from 'vue-axios'
+import VueAuthenticate from 'vue-authenticate'
+import axios from 'axios';
+
 // import MainRoot from "@/components/MainRoot";
 import Dashboard from "@/components/Dashboard";
 import PaymentGateway from "@/components/PaymentGateway";
@@ -19,7 +23,25 @@ import Vuex from 'vuex'
 
 import vBlur from 'v-blur'
 // import PanelMainView from "./components/PanelMainView";
+import ScrollView from 'vue-scrollview'
+import BankingAccountsMainView from "./components/Accounts/BankingAccountsMainView";
+import VueMobileDetection from 'vue-mobile-detection'
+import VueMask from 'v-mask'
 
+
+Vue.use(VueMask);
+Vue.use(VueMobileDetection)
+Vue.use(VueAxios, axios)
+Vue.use(VueAuthenticate, {
+    baseUrl: 'http://localhost::8080', // Your API domain
+
+    providers: {
+        github: {
+            clientId: '',
+            redirectUri: 'http://localhost:8080/auth/callback' // Your client app URL
+        }
+    }
+})
 Vue.use(vBlur)
 Vue.config.productionTip = false
 Vue.config.rtl = true
@@ -32,6 +54,12 @@ Vue.use(require('vue-chartist'), {
   messageNoData: "داده ای برای نمایش وجود ندارد",
   classNoData: "empty",
 })
+
+const options = {
+    throttle: 50,
+    callbacks: []
+}
+Vue.use(ScrollView, options)
 export default new Vuetify({
   rtl: true,
     // rules: {
@@ -59,27 +87,39 @@ const routers =[
         path:"/gateway",
         component:PaymentGateway
     },
-
-
-  // {
-  //   name:"home",
-  //   path:"/home",
-  //   component:PanelMainView,
-  //     children: [
-  //         {
-  //             path:"/dashboard",
-  //             component:Dashboard,
-  //         },
-  //         {
-  //             path:"/gateway",
-  //             component:PaymentGateway,
-  //             class:'main'
-  //         },
-  //     ]
-  // },
+    {
+        name:"bankingAccounts",
+        path:"/bankingAccounts",
+        component:BankingAccountsMainView
+    },
+    // {
+    //     name:"help",
+    //     path:"PanelHelp/help",
+    //     component:PanelUsageHelp,
+    // },
+    // {
+    //     name:"commonQuestions",
+    //     path:"PanelHelp/commonQuestions",
+    //     component:PanelCommonQuestion,
+    // },
+    // {
+    //     name:"privacy",
+    //     path:"PanelHelp/privacy",
+    //     component:PanelPrivacyPolicy,
+    // },
+    // {
+    //     name:"complainForm",
+    //     path:"PanelHelp/complainForm",
+    //     component:ComplaintSubmittingForm,
+    // },
+    // {
+    //     name:"rules",
+    //     path:"PanelHelp/rules",
+    //     component:PanelRules,
+    // },
     {
         name:"PanelHelp",
-        path:"/panelHelp",
+        path:"/panelHelp/",
         component:PanelHelp,
         children:[
             {

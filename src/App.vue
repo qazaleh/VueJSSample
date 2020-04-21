@@ -1,10 +1,10 @@
 <template>
 
   <v-app>
-      <div>
-          <h1 style="text-align: center">{{this.$route.name}}</h1>
-      </div>
-      <login-form v-if='this.$route.name === "login"'/>
+<!--      <div>-->
+<!--          <h1 style="text-align: center">{{this.$route.name}}</h1>-->
+<!--      </div>-->
+      <login-view v-if='this.$route.name === "login"'/>
       <OtpView v-else-if='this.$route.name === "otp"'/>
       <PanelHelp v-else-if='this.$route.name.includes("PanelHelp")'/>
       <RightMenu  v-else></RightMenu>
@@ -19,11 +19,12 @@
 //  import LoginForm from "@/components/LoginForm";
 
 // import MainRoot from "@/components/MainRoot";
-import LoginForm from "@/components/LoginForm";
+// import LoginForm from "@/components/LoginForm";
 // import OtpCodeView from "@/components/OtpCodeView";
 import RightMenu from "./components/NavigationSideMenu/RightMenu";
 import PanelHelp from "@/components/PanelHelp";
 import OtpView from "./components/Otp/OtpView";
+import LoginView from "./components/Login/LoginView";
 export default {
     name: 'App',
     el: '#app',
@@ -54,12 +55,13 @@ export default {
         }
     },
     components: {
+        LoginView,
         OtpView,
         RightMenu,
         PanelHelp,
         // OtpCodeView,
         // MainRoot,
-        LoginForm,
+        // LoginForm,
 
     },
     created() {

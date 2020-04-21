@@ -1,6 +1,8 @@
 <template>
-    <div >
-
+    <div v-if="isMobile()">
+       <mobile-righ-menu></mobile-righ-menu>
+    </div>
+    <div v-else >
         <v-navigation-drawer
 
                  app
@@ -36,12 +38,9 @@
                                     </v-list-item>
                                 </v-list>
                                    </v-navigation-drawer>
-
-<!--        <HomeBaseComponent></HomeBaseComponent>-->
                                         <v-content >
-<!--                                            <v-container fluid>-->
                                                 <v-row class=""  >
-                                                    <v-col class="blue-grey" cols="12" sm="12" md="12"  lg="9" xl="9">
+                                                    <v-col class="" cols="12" sm="12" md="12"  lg="9" xl="9">
                                                         <v-row>
                                                                 <v-btn
                                                                         class="v-btn-side-menu"
@@ -73,7 +72,6 @@
                                                         </v-row>
                                                     </v-col>
                                                 </v-row>
-<!--                                            </v-container>-->
                                         </v-content>
     </div>
 </template>
@@ -81,11 +79,12 @@
     import UserInformationHome from "../UserInformationHome";
     import UserWorkFlow from "../UserWorkFlow";
     import HomeToolbar from "../HomeToolbar";
-    // import HomeBaseComponent from "../HomeBaseFiles/HomeBaseComponent";
+    import MobileRighMenu from "./MobileRighMenu";
 
     export default {
         name: "RightMenu",
         components: {
+            MobileRighMenu,
             // HomeBaseComponent,
             UserInformationHome,UserWorkFlow,HomeToolbar
         },
@@ -97,6 +96,7 @@
                 miniVariant: true,
                 drawer: true,
                 clipped: false,
+
                 colors: [
                     { id: 0, hex: "#27269c", disabled: false },
                     { id: 1, hex: "#e005c5", disabled: false },
@@ -115,18 +115,18 @@
                     {
                         icon:'mdi-alert-circle-outline',
                         text:'راهنمای پنل',
-                        route:'panelHelp'
+                        route:'/PanelHelp'
                     },
                     // {
                     //     icon:'mdi-wallet-outline',
                     //     text:'کیف پول',
                     //     route:'/team'
                     // },
-                    // {
-                    //     icon:'mdi-card-text-outline',
-                    //     text:'حساب بانکی',
-                    //     route:'/team'
-                    // },
+                    {
+                        icon:'mdi-card-text-outline',
+                        text:'حساب بانکی',
+                        route:'/bankingAccounts'
+                    },
                     // {
                     //     icon:'mdi-calculator-variant',
                     //     text:'امکانات پرداخت',
@@ -163,6 +163,13 @@
                 // console.log("this is mini msggggg",this.mdAndDown)
                 // return !(this.mdAndUp);
 
+            },
+            isMobile() {
+                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    return true
+                } else {
+                    return false
+                }
             }
         },
         computed: {
