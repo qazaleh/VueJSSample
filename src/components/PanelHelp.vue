@@ -31,8 +31,8 @@
                     <v-tab-item
                       v-for="item in tabItems"
                       :key="item"
-                      :to="{path:item.route}"
-                    >
+                      :to="{ name: {path:item.route}, params: { id: item.id}}"
+                      >
                     </v-tab-item>
             </v-tabs-items>
         </v-card>
@@ -58,17 +58,17 @@
                     {
                         title:'سوالات متداول',
                         route:'/commonQuestions',
-                        id:'1',
+                        id:'0',
                     },
                     {
                         title:'قوانین و مقررات',
                         route:'/rules',
-                        id:'2',
+                        id:'1',
                     },
                     {
                         title:'حریم شخصی',
                         route:'/privacy',
-                        id:'3',
+                        id:'2',
                     },
                     // {
                     //     title:'ثبت شکایات',
@@ -84,7 +84,11 @@
                 this.$router.push(item.route);
             },
             firstRouter(){
+            // :to="{ name: 'topic', params: { id: 'props-v-state'}}
+            //     this.$router.push({name: '/commonQuestions',params: { id: '0'}});
+
                  this.$router.push("/commonQuestions");
+                 // this.$route.param
             }
 
         },

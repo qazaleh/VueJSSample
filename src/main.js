@@ -117,38 +117,73 @@ const routers =[
     //     path:"PanelHelp/rules",
     //     component:PanelRules,
     // },
-    {
-        name:"PanelHelp",
-        path:"/panelHelp/",
-        component:PanelHelp,
-        children:[
+
+    {name: "PanelHelp", path: '/panelHelp/:id', component: PanelHelp, children: [
             {
-                name:"help",
-                path:"/help",
+                // name:"help",
+                path:":panelUsageHelp",
                 component:PanelUsageHelp,
+                // props: true
             },
             {
-                name:"commonQuestions",
-                path:"/commonQuestions",
+                // name:"commonQuestions",
+                path:"commonQuestions",
                 component:PanelCommonQuestion,
+                // props: true
             },
             {
-                name:"rules",
-                path:"/rules",
-                component:PanelRules,
-            },
-            {
-                name:"privacy",
-                path:"/privacy",
+                // name:"privacy",
+                path:"privacy",
                 component:PanelPrivacyPolicy,
+                // props: true
             },
             {
-                name:"complainForm",
-                path:"/complainForm",
+                // name:"rules",
+                path:"rules",
+                component:PanelRules,
+                // props: true
+            },
+            {
+                // name:"complainForm",
+                path:"complainForm",
                 component:ComplaintSubmittingForm,
+                // props: true
+
             }
         ]
     },
+    //         {
+    //     name:"PanelHelp",
+    //     path:"/panelHelp/",
+    //     component:PanelHelp,
+    //     children:[
+    //         {
+    //             name:"help",
+    //             path:"/help",
+    //             component:PanelUsageHelp,
+    //         },
+    //         {
+    //             name:"commonQuestions",
+    //             path:"/commonQuestions",
+    //             component:PanelCommonQuestion,
+    //         },
+    //         {
+    //             name:"rules",
+    //             path:"/rules",
+    //             component:PanelRules,
+    //         },
+    //         {
+    //             name:"privacy",
+    //             path:"/privacy",
+    //             component:PanelPrivacyPolicy,
+    //         },
+    //         {
+    //             name:"complainForm",
+    //             path:"/complainForm",
+    //             component:ComplaintSubmittingForm,
+    //         }
+    //     ]
+    // },
 
 ]
 

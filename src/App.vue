@@ -2,7 +2,9 @@
 
   <v-app>
 <!--      <div>-->
-<!--          <h1 style="text-align: center">{{this.$route.name}}</h1>-->
+      <h1 style="text-align: center">{{this.$route.params.id}}</h1>
+
+      <h1 style="text-align: center">{{this.$route.name.includes("PanelHelp")}}</h1>
 <!--      </div>-->
       <login-view v-if='this.$route.name === "login"'/>
       <OtpView v-else-if='this.$route.name === "otp"'/>

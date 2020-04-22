@@ -157,6 +157,7 @@
 
             },
             routeView(item){
+                console.log("&*&*&*&*&*&*&*&*&*&*&*",item.route);
                 this.$router.push(item.route);
             },
             mini() {
